@@ -1,0 +1,240 @@
+/*
+ * responsive.custom.css is for custom media queries that are not set via the
+ * theme settings, such as cascading media queries.
+ *
+ * By default all the other responsive stylesheets used in Adaptivetheme use a
+ * "stacking method", however cascading media queries use a waterfall method so
+ * you can leverage the cascade and inheritance for all browsers that support
+ * media queries, regardless of screen size.
+ *
+ * @SEE http://zomigi.com/blog/essential-considerations-for-crafting-quality-media-queries/#mq-overlap-stack
+ *
+ * NOTE: this file loads by default, to disable got to your theme settings and
+ * look under the "CSS" settings tab.
+ */
+
+@media only screen and (min-width: 22.5em) { /* >= 360 px*/
+    /* ========================================================================
+     * Isotope items
+     * ======================================================================== */
+    .isotope .grid-sizer,
+    .isotope .isotope-item {
+        width: 160px;
+    }
+    .isotope-item .node-link-item.node-teaser .group-body {
+        height: 170px;
+    }
+    .isotope-item .placeholder {
+        width: 100%;
+        height: 194px;
+    }
+
+}
+
+
+@media only screen and (min-width: 30em) { /* >= 480 px*/
+
+    /* ========================================================================
+     * Menus (flexible breakpoint Mobile - Normal)
+     * ======================================================================== */
+    #superfish-1-accordion {
+        margin: -6px 0 0 -92px;
+    }
+
+    /* ========================================================================
+     * Isotope Filter/sorting button groups
+     * ======================================================================== */
+    .buttons-country .button-group .button {
+        padding: 0 5px 0 40px;
+        font-size: 15px;
+        background-size: auto 25px;
+    }
+    .buttons-country .button-group .button.colombia {
+        background: url("images/icon_kolumbien.png") no-repeat 9px 5px;
+    }
+    .buttons-country .button-group .button.ecuador {
+        background: url("images/icon_ecuador.png") no-repeat 2px 9px;
+    }
+    .buttons-country .button-group .button.mexico {
+        background: url("images/icon_mexico.png") no-repeat 8px 5px;
+    }
+    .buttons-country .button-group .button.peru {
+        background: url("images/icon_peru.png") no-repeat 1px 5px;
+    }
+
+
+    .buttons-topic .button-group .button {
+        text-overflow: ellipsis;
+        font-size: 15px;
+    }
+
+    /* =============================================================================
+     *   Footer
+     * ========================================================================== */
+    #footer .footer-address-block {
+        display: inline-block;
+    }
+    #block-mailchimp-signup-newsletter {
+        width: 30%;
+        max-width: 250px;
+    }
+
+}
+
+
+@media only screen and (min-width: 40em) { /* >= 640 px*/
+    /* =============================================================================
+     *    User login / register / password pages
+     * ========================================================================== */
+    .page-user .create-account {
+        width: 50%;
+        border: none;
+        padding: 0 0 0 2em;
+    }
+    .page-user #user_login_form {
+        width: 50%;
+        border: none;
+        padding: 0 2em 0 0;
+        border-right: 1px solid #444;
+    }
+    .page-user a.login-register {
+        right: 2em;
+    }
+
+    /* ========================================================================
+     * Isotope Filter/sorting button groups
+     * ======================================================================== */
+    .buttons-country .button-group .button {
+        padding: 0 5px 0 40px;
+        font-size: 17px;
+        background-size: auto 25px;
+    }
+    .buttons-country .button-group .button.colombia {
+        background-position: 29px 5px;
+    }
+    .buttons-country .button-group .button.ecuador {
+        background-position: 22px 9px;
+    }
+    .buttons-country .button-group .button.mexico {
+        background-position: 28px 5px;
+    }
+    .buttons-country .button-group .button.peru {
+        background-position: 21px 5px;
+    }
+
+
+    /* =============================================================================
+     *  Menus (flexible breakpoint Mobile - Normal)
+     * ========================================================================== */
+    #block-menu-menu-meta-menu {
+        display: block;
+    }
+
+    #block-locale-language {
+        display:inline-block;
+        position: absolute;
+        top: 68px;
+        right: 20px;
+        width: 80px;
+    }
+
+    #block-superfish-1 {
+        left: 170px;
+    }
+
+    #superfish-1 {
+        float: left; /* float parent to contain children */
+        font-family: "FedraSansStdMedium", sans-serif;
+        font-size: 0.95em;
+        color: #fff;
+        padding: 0.75em 0;
+        white-space: nowrap;
+    }
+
+    #superfish-1 ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    #superfish-1 > li {
+        width: 33%;
+        margin: 0;
+    }
+    #superfish-1 > li > ul {
+        margin-top: -0.8em;
+    }
+
+    #superfish-1 li a {
+        margin: 0;
+        padding: 0 1em;
+        line-height: 1.2;
+        color: #fff;
+        text-align: left;
+        text-decoration: none;
+        outline: 0;
+    }
+    #superfish-1 > li > a {
+        padding: 0;
+        text-align: center;
+    }
+    #superfish-1 > li:not(:last-child) > a {
+        border-right: 1px solid #fff;
+    }
+    #superfish-1 li a:hover,
+    #superfish-1 li a:focus,
+    #superfish-1 li a:active {
+        font-weight: bold;
+        color: #fff;
+        text-decoration: underline;
+        outline: 0;
+    }
+
+    #superfish-1 li li {
+        padding: 0.75em 1em;
+        border: none;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        background-color: #f69b21;
+    }
+
+}
+
+@media only screen and (min-width: 45em ) { /* >= 720 px */
+    /* ==================================================================================
+    *   Slogan styling
+    * ================================================================================== */
+    #name-and-slogan #site-slogan {
+        padding: 10px 10px 0 0;
+        font-size: 28px;
+    }
+    #name-and-slogan #site-slogan .pre-slogan {
+        font-size: 28px;
+    }
+
+    /* ==================================================================================
+    *   Contact page styling
+    * ================================================================================== */
+    body.page-contact .view-basic-pages .views-row {
+        width: 335px;
+        margin-right: 30px;
+    }
+}
+
+@media only screen and (min-width: 48em ) { /* >= 768 px */
+    /* ==================================================================================
+     *   Sidebar Block styling
+     * ================================================================================== */
+
+    .region-sidebar-second .region-inner {
+        margin: 84px 0 0 20px;
+    }
+
+}
+
+@media only screen and (min-width: 51.875em) { /* >= 830 px */
+
+    /* left page distance */
+    #page {
+        padding: 0 10px 0 120px;
+    }
+
+}

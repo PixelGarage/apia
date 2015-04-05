@@ -1,0 +1,2991 @@
+/*
+ * @file
+ * global.styles
+ *
+ * Styles you add here will load for all device sizes, they are "global", as
+ * opposed to "responsive" styles, which only load for a given breakpoint (media
+ * query) that you set in theme settings. See the README for more details.
+ *
+ *
+ * How to use this file:
+ * --------------------
+ *
+ * There are many empty selectors and some basic styles to act as a guide.
+ * Nothing is set in stone and you can change anything - even delete all of it
+ * and start with your own clean slate.
+ *
+ * See global.base also which includes normalize.css and some additional
+ * helper classes and base styles.
+ *
+ *
+ *
+ *  Style precedence in CSS (Specificity, Inheritance, Cascade)
+ *  -----------------------------------------------------------
+ *
+ *  Specificity:    a) Inline Style
+ *  (a,b,c,d)       b) Id
+ *                  c) Class, Pseudo-class, attribute
+ *                  d) Element, pseuo-element
+ *
+ *                          Example: div#sidebar p.bio -> 2 elements, 1 class, 1 id –> (0,1,1,2)
+ *
+ *
+ *  Inheritance:    Elements inherit styles from their parent container.
+                    "inherit" let you inherit margin, padding etc. from parent container.
+ *
+ *
+ *  Cascade:        - Site-Author (these files) OVER Site-User(Style settings in browser) OVER Browser Defaults
+ *                  - !importance has more weight than normal declarations
+ *                  - Equal specificity: last wins
+ *
+ *                  TIP: Normalizing (see above) takes browser defaults and cross browser issues out of equation!!!
+ */
+
+/* =============================================================================
+ *   Colors used for web site
+ * =============================================================================
+    text-black:         #222222
+    text-white:         #eeeeee
+    text-hover:         #808080
+    light-orange:       #f69b21, rgba(246,156,33,1.0)
+    orange:             #e77b08, rgba(231,123,8,1.0)
+    green:              #299d67, rgba(41,157,103,1.0)
+    blue:               #63b1b3, rgba(99,177,179,1.0)
+    violet:             #6b506f, rgba(107,80,111,1.0)
+    brown:              #c59a1b, rgba(197,154,27,1.0)
+    marker-red:         #b51a00
+
+  =============================================================================*/
+
+
+/* =============================================================================
+ *   Fonts
+ * ========================================================================== */
+
+@font-face {
+    font-family: 'FedraSansStdNormal';
+    src: url('../fonts/FedraSansStdNormal/fedrasansstdnormal.eot');
+    src: url('../fonts/FedraSansStdNormal/fedrasansstdnormal.eot') format('embedded-opentype'),
+    url('../fonts/FedraSansStdNormal/fedrasansstdnormal.woff') format('woff'),
+    url('../fonts/FedraSansStdNormal/fedrasansstdnormal.ttf') format('truetype'),
+    url('../fonts/FedraSansStdNormal/fedrasansstdnormal.svg#FedraSansStdNormal') format('svg');
+}
+@font-face {
+    font-family: 'FedraSansStdMedium';
+    src: url('../fonts/FedraSansStdMedium/fedrasansstdmedium.eot');
+    src: url('../fonts/FedraSansStdMedium/fedrasansstdmedium.eot') format('embedded-opentype'),
+    url('../fonts/FedraSansStdMedium/fedrasansstdmedium.woff') format('woff'),
+    url('../fonts/FedraSansStdMedium/fedrasansstdmedium.ttf') format('truetype'),
+    url('../fonts/FedraSansStdMedium/fedrasansstdmedium.svg#FedraSansStdMedium') format('svg');
+}
+@font-face {
+    font-family: 'FedraSansStdBold';
+    src: url('../fonts/FedraSansStdBold/fedrasansstdbold.eot');
+    src: url('../fonts/FedraSansStdBold/fedrasansstdbold.eot') format('embedded-opentype'),
+    url('../fonts/FedraSansStdBold/fedrasansstdbold.woff') format('woff'),
+    url('../fonts/FedraSansStdBold/fedrasansstdbold.ttf') format('truetype'),
+    url('../fonts/FedraSansStdBold/fedrasansstdbold.svg#FedraSansStdBold') format('svg');
+}
+@font-face {
+    font-family: 'FedraSansStdBook';
+    src: url('../fonts/FedraSansStdBook/fedrasansstdbook.eot');
+    src: url('../fonts/FedraSansStdBook/fedrasansstdbook.eot') format('embedded-opentype'),
+    url('../fonts/FedraSansStdBook/fedrasansstdbook.woff') format('woff'),
+    url('../fonts/FedraSansStdBook/fedrasansstdbook.ttf') format('truetype'),
+    url('../fonts/FedraSansStdBook/fedrasansstdbook.svg#FedraSansStdBook') format('svg');
+}
+@font-face {
+    font-family: 'FedraSansStdLight';
+    src: url('../fonts/FedraSansStdLight/fedrasansstdlight.eot');
+    src: url('../fonts/FedraSansStdLight/fedrasansstdlight.eot') format('embedded-opentype'),
+    url('../fonts/FedraSansStdLight/fedrasansstdlight.woff') format('woff'),
+    url('../fonts/FedraSansStdLight/fedrasansstdlight.ttf') format('truetype'),
+    url('../fonts/FedraSansStdLight/fedrasansstdlight.svg#FedraSansStdLight') format('svg');
+}
+@font-face {
+    font-family: 'FedraSansStdLightItalic';
+    src: url('../fonts/FedraSansStdLightItalic/fedrasansstdlightitalic.eot');
+    src: url('../fonts/FedraSansStdLightItalic/fedrasansstdlightitalic.eot') format('embedded-opentype'),
+    url('../fonts/FedraSansStdLightItalic/fedrasansstdlightitalic.woff') format('woff'),
+    url('../fonts/FedraSansStdLightItalic/fedrasansstdlightitalic.ttf') format('truetype'),
+    url('../fonts/FedraSansStdLightItalic/fedrasansstdlightitalic.svg#FedraSansStdLightItalic') format('svg');
+}
+
+
+
+/* =============================================================================
+ *   General reset
+ * ========================================================================== */
+/*
+ * AT regions (top and nested regions)
+ */
+.at-panel > .region > .region-inner,
+.at-panel .at-panel > .region > .region-inner {
+    margin: 0;
+}
+
+/*
+ * Blocks
+ */
+.block,
+.block > .block-inner,
+.block .block-title {
+    margin: 0;
+}
+/*
+ * Fields
+ */
+
+/* =============================================================================
+ *   Base
+ * ========================================================================== */
+
+/*
+ * To preserve theme settings never apply font properties to the HTML element.
+ * This is critically important if you are using the Responsive JavaScript
+ * feature as this relies on being able to set a pseudo font family on the HTML
+ * element. If you need to set default font properties of any kind use the BODY
+ * element as these can be overridden using font theme settings.
+ */
+
+html {
+    background: #fff;
+}
+
+
+body {
+    height: 100%;
+    min-height: 100%;
+    font-family: "FedraSansStdNormal", Arial, Helvetica, sans-serif;
+    font-size: 100%;  /* corresponds to 16px */
+    background: url("images/pattern_background_light1.png");
+}
+
+
+/* =============================================================================
+ *   HTML Elements
+ * ========================================================================== */
+/* and if we have headings with defined styles we'd also add */
+h1, h2, h3, h4, h5, h6 {
+    line-height: 1.2;   /* unitless line-height: element multiply this value with its computed font-sizes */
+}
+
+p {
+    font-size: 1em;
+    line-height: 1.1;     /* unitless line-height: element multiply this value with its computed font-sizes */
+}
+
+
+pre,
+code,
+tt,
+samp,
+kbd,
+var {
+    font-family: Consolas, Monaco, 'Courier New', Courier, monospace, sans-serif;
+}
+
+/* =============================================================================
+ *   Links
+ * ========================================================================== */
+
+a,
+a:link,
+a:visited {
+    text-decoration: none;
+    color: #f69b21;
+    outline: none;
+}
+
+a:active,
+a.active,
+a:hover,
+a:focus {
+    color: #e77b08;
+    text-decoration: underline;
+    outline: none;
+}
+
+
+/* =============================================================================
+ *   Wrappers
+ * ========================================================================== */
+#page {
+    background: url("images/map_complete.png") no-repeat right top;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    padding: 0 10px 0 10px;
+    width: 100%;
+    height: 100%;
+    min-height: 800px;
+}
+
+#header,
+#menu-bar,
+#breadcrumb,
+#messages,
+#columns,
+#comments,
+#footer,
+.region-leaderboard,
+.region-help,
+.region-secondary-content,
+.region-tertiary-content {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    max-width: 700px;
+}
+
+/*
+ * Top and bottom menus wrappers
+ */
+.region-leaderboard > .region-inner {
+    margin: 0;
+}
+.region-help > .region-inner,
+.region-secondary-content > .region-inner {
+    margin-top: 1em;
+}
+.region-tertiary-content > .region-inner {
+    margin: 2em 0;
+}
+
+/*
+ * Menu bar wrapper
+ */
+#menu-bar > nav.menu-bar-wrapper {
+    margin-top: 1em;
+}
+/*
+ * Breadcrumb wrapper
+ */
+#breadcrumb > nav.breadcrumb-wrapper {
+    margin-top: 1em;
+}
+/*
+ *  message panel
+ */
+#messages > div.messages {
+    margin-top: 1em;
+}
+/*
+ * Main content wrapper
+ */
+#columns > .content-column > .content-inner {
+    margin-top: 0;
+}
+/*
+ * Footer wrapper
+ */
+#footer {
+    position: relative;
+    margin: 50px -7px 30px -6px;
+    height: 189px;
+    z-index: 5;
+}
+#footer .region-footer > .region-inner {
+    position: relative;
+    padding: 25px 20px;
+    z-index: 6;
+}
+#footer #footer-image-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    line-height: 0;
+}
+#footer img.site-footer-image {
+    height: 189px;
+    width: 102%;
+    max-width: none;
+}
+#footer #footer-zewo-wrapper {
+    position: absolute;
+    bottom: 25px;
+    right: 5px;
+    padding: 0;
+    margin: 0;
+    width: auto;
+}
+
+
+/* =============================================================================
+ *   Header / Branding
+ * ========================================================================== */
+/*
+ * Wraps all the branding elements, logo, name and slogan
+ */
+#header {
+    position: relative; /* menu positioning */
+}
+#branding {
+    display: block;
+    position: relative;
+    margin: 0 -7px 0 -6px;
+    height: 255px;
+    z-index: 5;
+}
+
+/*
+ * Logo
+ */
+#logo {
+    position: absolute;
+    top: 24px;
+    left: 0;
+    padding: 0;
+    margin: 0;
+    width: 190px;
+}
+#logo-bar {
+    position: absolute;
+    top: 24px;
+    left: 189px;
+    padding: 0;
+    margin: 0;
+    width: auto;
+}
+
+#logo-bar img {
+    min-height: 131px;
+    width: 100%;
+}
+
+/*
+ * Wrapper for the site name and slogan (hgroup)
+ */
+#name-and-slogan {
+    display: block;
+    position: absolute;
+    top: 155px;
+    left: 120px;
+    height: 100px;
+}
+
+/*
+ * Site slogan (h2)
+ */
+#name-and-slogan #site-slogan {
+    margin: 0;
+    padding: 10px 0 0 0;
+    font-family: 'FedraSansStdLight', sans-serif;
+    font-size: 4vw;
+}
+#name-and-slogan #site-slogan .pre-slogan {
+    font-family: 'FedraSansStdMedium', sans-serif;
+    font-size: 4vw;
+}
+
+
+/* =============================================================================
+ *   Search box in header
+ * ========================================================================== */
+#header #search-box {
+    position: absolute;
+    top: 48px;
+    right: 20px;
+    z-index: 6;
+}
+#header #search-box form {
+    margin: 0;
+}
+#header #search-box .form-type-textfield label,
+#header #search-box .form-submit {
+    display: none;
+}
+#header #search-box .form-type-textfield {
+    margin: 0;
+}
+#header #search-box .form-type-textfield input {
+    width: 75px;
+    font-family: "FedraSansStdLight", sans-serif;
+    font-size: 13px;
+    text-indent: 15px;
+    line-height: 1;
+    border: none;
+    background: #f8f8f8 url("images/icon_search.png") no-repeat 0 2px;
+}
+
+
+/* =============================================================================
+ *   Top menu (login, meta, language), bottom menu (copyright, legal)
+ * ========================================================================== */
+/*
+ *   meta menu, login menu, legal menu
+ */
+#block-menu-menu-meta-menu {
+    display: none;
+    position: absolute;
+    top: 45px;
+    left: 190px;
+    width: 50%;
+    font-family: "FedraSansStdMedium", sans-serif;
+    font-size: 0.75em;
+    z-index: 6;
+}
+#block-locale-language {
+    display:inline-block;
+    position: absolute;
+    top: 46px;
+    right: 105px;
+    width: 100px;
+    font-family: "FedraSansStdMedium", sans-serif;
+    font-size: 0.75em;
+    z-index: 6;
+}
+
+#block-system-user-menu {
+    display:inline-block;
+    float: right;
+    font-size: 0.8em;
+}
+#block-menu-menu-legal-menu,
+#block-menu-menu-copyright-menu {
+    display:inline-block;
+    float: right;
+    font-size: 0.8em;
+}
+#block-menu-menu-copyright-menu {
+    float: left;
+}
+#block-menu-menu-meta-menu .block-inner,
+#block-system-user-menu .block-inner,
+#block-menu-menu-legal-menu .block-inner,
+#block-menu-menu-copyright-menu  .block-inner,
+#block-locale-language .block-inner {
+    margin: 0;
+}
+
+#block-menu-menu-meta-menu ul.menu,
+#block-system-user-menu ul.menu,
+#block-menu-menu-legal-menu ul.menu,
+#block-menu-menu-copyright-menu ul.menu,
+#block-locale-language ul.language-switcher-locale-url {
+    display: block;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    text-align: center;
+}
+#block-menu-menu-meta-menu ul.menu li {
+    display:inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0 1em 0 0;
+    min-width: 19%;
+    line-height: 1.2;
+}
+
+#block-menu-menu-legal-menu ul.menu li,
+#block-menu-menu-copyright-menu ul.menu li,
+#block-system-user-menu ul.menu li {
+    display:inline-block;
+    margin: 0;
+    padding-right: 1em;
+    float: left;
+}
+#block-locale-language ul.language-switcher-locale-url li {
+    display:inline-block;
+    margin: 0;
+    padding: 0 0.4em;
+    border-right: 1px solid #fff;
+    line-height: 1;
+}
+#block-locale-language ul.language-switcher-locale-url li.last {
+    padding-right: 0;
+    border-right: 0;
+}
+
+#block-menu-menu-meta-menu ul.menu li a,
+#block-system-user-menu ul.menu li a,
+#block-menu-menu-legal-menu ul.menu li a,
+#block-menu-menu-copyright-menu ul.menu li a,
+#block-locale-language ul.language-switcher-locale-url li a {
+    color: #fff;
+}
+#block-locale-language ul.language-switcher-locale-url li span.locale-untranslated {
+    color: #ddd;
+}
+
+
+#block-menu-menu-meta-menu ul.menu li a:hover,
+#block-system-user-menu ul.menu li a:hover,
+#block-menu-menu-legal-menu ul.menu li a:hover,
+#block-menu-menu-copyright-menu ul.menu li a:hover,
+#block-locale-language ul.language-switcher-locale-url li a:hover {
+    text-decoration: underline;
+}
+
+
+/* =============================================================================
+ *   Primary, Secondary and Menu Bar region menus
+ * ========================================================================== */
+/*
+ * Use one of the following id's for granular control:
+ *  - #menu-bar (menu bar region)
+ *  - #primary-menu (main menu)
+ *  - #secondary-menu (secondary/user menu)
+ * You can target all of these with .nav or div[id$="menu-bar"]
+ */
+
+/* =============================================================================
+ *   Superfish accordion menu (Mobile first)
+ * ========================================================================== */
+/*
+  * Toggle button
+  */
+div.sf-accordion-toggle {}
+a#superfish-1-toggle {
+    outline: none;
+    color: #fff;
+}
+a#superfish-1-toggle:before {
+    font-family: FontAwesome;
+    content: "\f0c9";
+    display: inline-block;
+    padding: 0;
+    font-size: 1.8em;
+    color: #fff;
+}
+a#superfish-1-toggle span {
+    padding-left: 0.5em;
+    font-size: 1em;
+    vertical-align: 0.2em;
+}
+a#superfish-1-toggle.sf-expanded:before {
+    font-family: FontAwesome;
+    content: "\f0c9";
+    display: inline-block;
+    padding: 0;
+}
+
+
+/*
+ * Accordion menu
+ */
+#block-superfish-1 {
+    position: absolute;
+    top: 78px;
+    left: 190px;
+    width: 57%;
+    margin: 0;
+    padding: 0;
+    z-index: 6;
+}
+
+#superfish-1-accordion {
+    margin: -6px 0 0 -190px;
+    width: 300px;
+    font-size: 1em;
+    background-color: #f69b21;
+}
+
+#superfish-1-accordion li {
+    /* all list items */
+    display: block;
+    margin-top: 0.5em;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+}
+#superfish-1-accordion > li:last-child {
+    margin-bottom: 0.5em;
+}
+#superfish-1-accordion > li > ul {
+    margin: 0 10%;
+    width: 80%;
+}
+
+#superfish-1-accordion li a,
+#superfish-1-accordion li a:link,
+#superfish-1-accordion li a:visited {
+    /* all list links */
+    display: block;
+    margin: 0 auto;
+    width: 90%;
+    color: #f69b21;
+    text-align: center;
+    text-decoration: none;
+    white-space: nowrap;
+    line-height: 2.5;
+    outline: none;
+    border-radius: 0.2em;
+    background-color: #fff;
+}
+#superfish-1-accordion li a:hover,
+#superfish-1-accordion li a:focus {
+    /* all item hovering */
+    color: #f69b21;
+    font-weight: bold;
+    text-decoration: underline;
+    outline: none;
+}
+
+#superfish-1 a > .sf-sub-indicator {
+    display: none;  /* no drop-down arrow */
+}
+
+
+
+/* =============================================================================
+ *   Breadcrumbs
+ * ========================================================================== */
+
+#breadcrumb {
+    display: none;
+    margin: 0;
+    padding: 0;
+}
+
+/* Breadcrumb label: If the label is set to show in theme settings the label class is added */
+#breadcrumb .breadcrumb-label {
+    display: inline;
+    font-size: 1em;
+    padding-right: 0.5em;
+}
+#breadcrumb .breadcrumb-label:after {
+    content: ":";
+}
+
+#breadcrumb .with-breadcrumb-label ol {
+    display: inline;
+}
+#breadcrumb ol {
+    margin: 0;
+    padding: 0;
+}
+
+/* Breadcrumb items */
+#breadcrumb li {
+    display: inline-block;
+    list-style: none;
+}
+#breadcrumb li.crumb:before {
+    content: '';
+    color: #222;
+    text-indent: 0.8em;
+    background-size: 0.5em;
+}
+#breadcrumb li.crumb a:hover {
+    color: rgba(115,133,119,1.0);
+}
+
+/* Breadcrumb seperator */
+#breadcrumb .crumb-sepreator:before {
+    font-family: FontAwesome;
+    content: "\f054";
+    display: inline-block;
+    padding: 0 1em;
+    font-size: 1em;
+    color: rgba(115,133,119,1.0);
+}
+
+
+
+/* =============================================================================
+ *   Messages
+ * ========================================================================== */
+div.messages ul {
+    margin: 0;
+}
+
+div.status {}
+
+div.warning {}
+tr.warning {}
+
+div.error,
+tr.error {}
+
+.error {}
+
+.warning {}
+
+
+/* =============================================================================
+ *   Pagers
+ * ========================================================================== */
+
+ul.pager {
+    clear: both;
+    margin: 0;
+    text-align: center;
+}
+
+.item-list ul.pager li {
+    margin: 0;
+}
+
+ul.pager li {
+    background-image: none;
+    display: inline;
+    list-style-type: none;
+    padding: .5em;
+}
+
+ul.pager li.pager-current {
+    font-weight: 700;
+}
+
+.block ul.pager li {
+    margin: 0;
+}
+
+/*
+ * Theme the various states of pager links
+ */
+ul.pager li {}
+
+ul.pager li a {}
+
+ul.pager li a:link,
+ul.pager li a:visited {}
+
+ul.pager li a:active,
+ul.pager li a.active {}
+
+ul.pager li a:hover,
+ul.pager li a:focus {}
+
+ul.pager li.pager-item {}
+ul.pager li.first {}
+ul.pager li.last {}
+ul.pager li.pager-current {}
+ul.pager li.pager-first {}
+ul.pager li.pager-previous {}
+ul.pager li.pager-next {}
+ul.pager li.pager-last {}
+
+
+/* =============================================================================
+ *   Misc Global Styles
+ * ========================================================================== */
+/*
+ *   Action links
+ */
+
+ul.action-links {
+    margin: 1.25em 0 0;
+    list-style: none;
+}
+
+ul.action-links li {}
+
+/*
+ * Generic styles for the more link
+ */
+.more-link {}
+
+/*
+ * Generic styles for links. See the ul.links declaration in node and comment stylesheets
+ */
+ul.links {
+    margin: 0;
+    padding: 0;
+}
+
+ul.links.inline {
+    display: block;
+}
+
+ul.links li {
+    display: inline;
+    list-style: none;
+    padding: 0 0.625em 0 0;
+}
+
+/*
+ * Feed icons
+ */
+.feed-icon {}
+
+/*
+ * Aggregator feed source
+ */
+#aggregator .feed-source .feed-icon {
+    display: inline;
+    float: none;
+    margin-right: 0.625em;
+}
+
+.feed-details dt,
+.feed-details dd {
+    display: inline;
+    margin: 0;
+}
+
+/*
+ * Search results are an ordered list so reset the margin
+ */
+.search-results {
+    margin: 0;
+}
+
+/*
+ * Buttons used by contrib modules like Media
+ */
+a.button {
+    -webkit-appearance: button;
+    -moz-appearance: button;
+    appearance: button;
+}
+
+/*
+ * Password confirmation
+ */
+.password-parent,
+.confirm-parent {
+    margin: 0;
+}
+
+/* =============================================================================
+ *   Forms
+ * ========================================================================== */
+/*
+ * Wrapper for a form element (or group of form elements) and its label
+ */
+.form-item input.error,
+.form-item textarea.error,
+.form-item select.error {
+    border: 1px solid #b51a00;
+}
+
+#content form {
+    overflow: hidden;  /* Prevents floating form buttons to be outside of form */
+}
+.form-item div.description {
+    padding: 0.2em 0;
+}
+
+.form-item label {
+    display: inline-block;
+    overflow: hidden;
+    min-width: 120px;
+    width: 20%;
+    padding: 0 10px 0 5px;
+    font-family: "FedraSansStdBook",sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1;
+    color: #222222;
+}
+.form-item label span.form-required {
+    color: #e77b08;
+}
+
+.form-item .form-checkboxes,
+.form-item .form-radios {
+    display: block;
+    width: 100%;
+}
+.form-item .form-checkboxes label,
+.form-item .form-radios label {
+    width: auto;
+    vertical-align: middle;
+}
+.form-item .form-checkboxes input,
+.form-item .form-radios input,
+.form-item .form-checkbox,
+.form-item .form-radio {
+    margin: 0;
+}
+.form-item .form-checkboxes .form-item.form-type-checkbox,
+.form-item .form-radios .form-item.form-type-radio {
+    display: inline-block;
+    margin: 0;
+}
+
+.form-item input.form-text,
+.form-item textarea {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    outline: none;
+    color: #e77b08;
+    border: none;
+    border-bottom: 1px solid #222;
+    background: none;
+}
+.form-item input.form-text {
+    width: 55%;
+    max-width: 380px;
+    vertical-align: top;
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1;
+}
+.form-item input.form-text:focus,
+.form-item textarea:focus {
+    outline: none;
+}
+
+form .form-actions {
+    margin: 30px 0 40px;
+}
+input[type="file"],
+input[type="submit"] {
+    width:auto;
+    padding: 0.375em 0.625em;
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 0.8em;
+    line-height: 1;
+    text-transform: uppercase;
+    color: #5c5c5c;
+    border: 1px solid #e6e6e6;
+    -moz-border-radius: 0; /* Firefox */
+    -webkit-border-radius: 0; /* Safari and Chrome */
+    border-radius: 0; /* Opera 10.5+, future browsers, and now also Internet Explorer 6+ using IE-CSS3 */
+    background-color: rgba(233,233,233,1.0);
+}
+input[type="submit"] {
+    display: block;
+    margin-left: 0;
+    padding: 0.625em 1em;
+    font-size: 1em;
+    color: white;
+    text-transform: none;
+    line-height: 1.2;
+    -moz-border-radius: 0.25em;
+    -webkit-border-radius: 0.25em;
+    border-radius: 0.25em;
+    border: none;
+    background: #e77b08;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f69b21), color-stop(1, #e77b08));
+    background: -moz-linear-gradient(top center, #f69b21 0%, #e77b08 100%);
+}
+input[type="submit"]:hover {
+    background: #f69b21;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e77b08), color-stop(1, #f69b21));
+    background: -moz-linear-gradient(top center, #e77b08 0%, #f69b21 100%);
+}
+
+/*
+ *  Form fieldsets
+ */
+form fieldset {
+    position:relative;
+    margin: 30px 0 0;
+    padding: 0;
+    background: none;
+    border: none;
+}
+form fieldset legend {
+    font-family: "FedraSansStdBold",sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+    color: #222;
+
+}​
+ form fieldset span.button-operator {
+     display: none;
+ }
+
+/* =============================================================================
+ *   Comment Styling - Comments, comment wrapper, comment form
+ * ========================================================================== */
+
+/*
+ * Wrapper for the list of comments and its titles
+ */
+#comments {
+    overflow: hidden;
+    margin: 0;
+}
+
+#comments h2 {
+    border-bottom: 1px solid rgba(115,133,119,1.0);
+}
+
+#comments h2.comment-form,
+#comments h2.comment-title {
+    margin: 1.25em 0;
+    padding-left: 0.625em;
+    font-weight: normal;
+    color: #222;
+
+}
+
+/*
+ * Wrapper for a single comment
+ */
+.comment,
+#comments .at-panel {
+    margin: 1.25em 0;
+    padding: 0.625em 0;
+    border-top: 1px solid rgba(115,133,119,1.0);
+}
+
+.comment:first-of-type,
+#comments > .at-panel:first-of-type {
+    border-top: none;
+}
+
+.comment.odd {}
+
+.comment.even {}
+
+/*
+ * Preview of the comment before submitting new or updated comment
+ */
+#comments .comment-form,
+#comments .comment-preview {
+    overflow: hidden;  /* Prevents floating buttons to be outside form */
+    padding: 0.625em;
+}
+
+/*
+ * Nested comments are indented
+ */
+#comments .indented {
+    margin-left: 2.5em;
+}
+
+/*
+ * "New" marker for comments that are new for the current user
+ */
+.new {
+    color: #b51a00;
+}
+
+
+/* =============================================================================
+ *   Messages
+ * ========================================================================== */
+
+#messages {
+    padding: 1px 0; /* Prevents margin collapsing */
+}
+
+/* Left and right margin are set by the global gutter width */
+div.messages {
+    margin-bottom: 0.625em;
+    margin-top: 0.625em;
+    -webkit-border-radius: 0.4em;
+    -moz-border-radius: 0.4em;
+    border-radius: 0.4em;
+}
+
+div.messages ul {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+div.status {}
+
+div.warning {}
+
+tr.warning {}
+
+div.error,
+tr.error {}
+
+.error {}
+
+.warning {}
+
+
+/* =============================================================================
+ *   Tables
+ * ========================================================================== */
+
+table {
+    margin: 0.625em 0;
+    padding: 0;
+    width: 100%;
+}
+
+table.sticky-header {
+    z-index: 10;
+}
+
+table,
+thead,
+tbody,
+tr,
+th,
+td {
+    border-color: #ccc;
+}
+
+table,
+td,
+th {
+    vertical-align: middle;
+}
+
+caption,
+th,
+td {
+    text-align: left;
+}
+
+thead tr {
+    font-weight: 700;
+    background-color: #e5e5e5;
+
+}
+
+td,
+th {
+    border-bottom: 0;
+    margin: 0;
+    padding: 0.375em 0.5em;
+}
+
+tbody {}
+
+tbody tr {
+    border-top: 1px solid #ccc;
+}
+
+tr.odd {
+    background: #fff;
+}
+
+tr.info,
+tr.even,
+tr:nth-child(2n+2) {
+    border-bottom: 0;
+    background-color: #f5f5f5;
+}
+
+tr.drag {}
+
+tr.drag-previous {}
+
+tr.odd td.active {
+    background-color: #eee;
+}
+
+tr.even td.active {
+    background-color: #ebebeb;
+}
+
+
+/* =============================================================================
+ *
+ *
+ *      Common Blocks starts here...
+ *
+ *
+ * ========================================================================== */
+
+/* =============================================================================
+ *   Follow block
+ * ========================================================================== */
+#block-follow-site .block-inner {
+    margin: 0;
+}
+#block-follow-site .follow-links {
+    max-width: 50em;
+    margin: 0 auto;
+    text-align: center;
+}
+#block-follow-site .follow-links a.follow-link {
+    float: none;
+    display: inline-block;
+    background-image: none !important;
+    padding: 0.1em 0.5em;
+    height: auto;
+    font-size: 1.5em;
+    line-height: 1.5;
+    color: #222;
+    border: solid 0.08em #222;
+    border-radius: .1em;
+}
+#block-follow-site .follow-links .follow-link-this-site:after {
+    font-family: FontAwesome;
+    content: "\f09e";
+}
+#block-follow-site .follow-links .follow-link-facebook:after {
+    font-family: FontAwesome;
+    content: "\f09a";
+}
+#block-follow-site .follow-links .follow-link-googleplus:after {
+    font-family: FontAwesome;
+    content: "\f0d5";
+}
+#block-follow-site .follow-links .follow-link-xing:after {
+    font-family: FontAwesome;
+    content: "\f168";
+}
+#block-follow-site .follow-links .follow-link-linkedin:after {
+    font-family: FontAwesome;
+    content: "\f0e1";
+}
+
+/* =============================================================================
+ *   ShareThis links block
+ * ========================================================================== */
+.block-sharethis .block-inner {
+    margin: 0;
+}
+.sharethis-wrapper {
+    max-width: 50em;
+    margin: 0 auto;
+    text-align: center;
+}
+.sharethis-wrapper > span .stButton .stLarge {
+    background-image: none !important;
+    font-size: 2em;
+    color: #222;
+}
+
+/* small buttons (chicklets)*/
+.sharethis-wrapper > span .stButton,
+.sharethis-wrapper > span .stButton .chicklets {
+    overflow: hidden;
+    margin: 0;
+    padding: 0 !important;
+    width: 22px !important;
+    height: 20px;
+    line-height: 20px;
+}
+
+
+/* Large buttons */
+.st_facebook_large .stButton .stLarge:before {
+    font-family: FontAwesome;
+    content: "\f09a";
+    display: inline-block;
+    padding: 0;
+}
+.st_twitter_large .stButton .stLarge:before {
+    font-family: FontAwesome;
+    content: "\f099";
+    display: inline-block;
+    padding: 0;
+}
+.st_googleplus_large .stButton .stLarge:before {
+     font-family: FontAwesome;
+     content: "\f0d5";
+     display: inline-block;
+     padding: 0;
+}
+.st_pinterest_large .stButton .stLarge:before {
+    font-family: FontAwesome;
+    content: "\f0d2";
+    display: inline-block;
+    padding: 0;
+}
+.st_sharethis_large .stButton .stLarge:before {
+    font-family: FontAwesome;
+    content: "\f1e0";
+    display: inline-block;
+    padding: 0;
+}
+
+
+/* =============================================================================
+ *
+ *
+ *      jQuery UI (1.10 up) / other widgets starts here...
+ *
+ *
+ * ========================================================================== */
+
+/* =============================================================================
+ *   General settings (header, content, border, corner, states, icon)
+ * ========================================================================== */
+.ui-widget {
+    font-family: inherit;
+    font-size: 1em;
+    margin: 0.5em 0 1em;
+}
+.ui-widget-header {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    font-size: 1em;
+    font-weight: 700;
+    line-height: 1.2;
+    color: #222;
+    text-decoration: none;
+    background: none;
+    border: 1px solid #ccc;
+}
+.ui-widget-content {
+    color: #222222;
+    background: none;
+    border: 1px solid #ccc;
+}
+
+/* corners */
+.ui-corner-all, .ui-corner-top, .ui-corner-right, .ui-corner-tr {
+    border-top-right-radius: 0.25em;
+}
+.ui-corner-all, .ui-corner-top, .ui-corner-left, .ui-corner-tl {
+    border-top-left-radius: 0.25em;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-right, .ui-corner-br {
+    border-bottom-right-radius: 0;
+}
+.ui-corner-all, .ui-corner-bottom, .ui-corner-left, .ui-corner-bl {
+    border-bottom-left-radius: 0;
+}
+
+/* states */
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default {
+    font-weight: 400;
+    color: #808080;
+    border: 1px solid #bbb;
+    background: #ddd none;
+}
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active {
+    font-weight: 400;
+    color: #222;
+    border: 1px solid #ccc;
+    background: #fff none;
+}
+.ui-widget .ui-state-default a, .ui-widget .ui-state-default a:link, .ui-widget .ui-state-default a:visited {
+    color: #808080;
+    text-decoration: none;
+    outline: none;
+}
+.ui-widget .ui-state-active a, .ui-widget .ui-state-active a:link, .ui-widget .ui-state-active a:visited {
+    color: #222;
+    text-decoration: none;
+    outline: none;
+}
+.ui-widget .ui-state-hover a, .ui-widget .ui-state-hover a:hover, .ui-widget .ui-state-hover a:link, .ui-widget .ui-state-hover a:visited {
+    color: #222;
+    text-decoration: none;
+}
+
+/* Icons */
+.ui-widget .ui-icon {
+    display: none;
+}
+
+/* =============================================================================
+ *   jQuery / Quicktabs Tabs
+ * ========================================================================== */
+.ui-tabs,
+.quicktabs-ui-wrapper {
+    position: relative;
+    padding: 0.2em;
+}
+.ui-tabs .ui-tabs-nav {
+    margin: 0;
+    padding: 0.2em 0.2em 0;
+    border-width: 0;
+    border-bottom: 1px solid #ccc;
+}
+
+.ui-tabs .ui-tabs-nav li {
+    position: relative;
+    float: left;
+    list-style: none;
+    margin: 1px 0.2em 0 0;
+    padding: 0;
+    top: 0;
+    white-space: nowrap;
+    border-bottom-width: 0;
+}
+.ui-tabs .ui-tabs-nav li.ui-tabs-active {
+    margin-bottom: -1px;
+    padding-bottom: 1px;
+}
+
+.ui-tabs .ui-tabs-nav li a {
+    float: left;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    outline: none;
+}
+
+.ui-tabs .ui-tabs-panel {
+    display: block;
+    padding: 1em 1.4em;
+    border-width: 0;
+    background: none;
+}
+
+/* =============================================================================
+ *   jQuery / Quicktabs Accordion
+ * ========================================================================== */
+/* accordion headers */
+.ui-accordion {
+    font-size: 1em;
+}
+.ui-accordion .ui-accordion-header {
+    position: relative;
+    cursor: pointer;
+    display: block;
+    margin-top: 0.2em;
+    padding: 0.5em 0.5em 0.5em 0.7em;
+    min-height: 0;
+    background: #ddd none;
+}
+
+.ui-accordion .ui-accordion-header.ui-state-active {
+    background: #eee none;
+}
+.ui-accordion .ui-accordion-header.ui-state-default a:before {
+    content: '\f054';
+    font-family: "fontawesome";
+    font-weight: normal;
+    padding: 0 0.5em;
+    color: #808080;
+}
+.ui-accordion .ui-accordion-header.ui-state-active a:before,
+.ui-accordion .ui-accordion-header.ui-state-hover a:before {
+    content: '\f078';
+    font-family: "fontawesome";
+    font-weight: normal;
+    padding: 0 0.35em;
+    color: #222;
+}
+
+
+/* =============================================================================
+ *  Views Flexslider slideshow block made responsive
+ * ========================================================================== */
+/*
+ *  Field flexslider
+ */
+.field-item > .flex-nav-container {
+    position: relative;
+    margin: 0;
+}
+.field-item > .flex-nav-container > .flexslider {
+    height: auto;
+    padding-bottom: 0;
+}
+.field-item > .flex-nav-container > .flexslider .flex-caption {
+    display: none;
+}
+.field-item > .flex-nav-container > .flex-control-nav {
+    /* field item flexslider */
+    bottom: -22px;
+}
+
+/*
+ *  Banner flexslider
+ */
+.flex-nav-container {
+    margin: 0 auto;
+    position: relative;
+    width: 100%;
+}
+.flex-nav-container > .flexslider {
+    position: relative;
+    border: none;
+    border-radius: 0;
+    background: none;
+    /* Trick: The image is visible in the padding area and gives the element a height (overflow=hidden cuts all outside border) */
+    overflow: hidden;
+    width: 100% !important;
+    height: 0;
+    padding-bottom: 25%;
+}
+.flex-nav-container > .flexslider ul.slides li img {
+    margin: 0 auto;
+    padding: 0;
+    width: 100%;
+}
+
+/* navigation at the bottom inside the panel */
+.flex-control-nav {
+    position: absolute;
+    bottom: 0;
+    outline: none;
+    text-align: center;
+    width: 100%;
+    z-index: 2; /* guarantees controls above direction navigation */
+}
+.flex-control-nav li a {
+    cursor: pointer;
+    display: block;
+    width: 15px; /* image size */
+    height: 15px;
+    text-indent: -999em;
+    background: url("images/fs_control_nav_ring_klein.png") no-repeat scroll 0 0;
+}
+.flex-control-nav li a:hover {
+    /* get middle image */
+    background-position: 0 -15px;
+    cursor: default;
+}
+.flex-control-nav li a.active {
+    /* get last image */
+    background-position: 0 -30px;
+    cursor: default;
+}
+
+/* direction controls left and right centered */
+.flex-direction-nav li {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 45%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 0.5s;
+    -webkit-transition: opacity 0.5s; /* Safari */
+}
+.flex-direction-nav li.last {
+    left: auto;
+    right: 0;
+}
+.flex-direction-nav li:hover {
+    opacity: 1.0;
+}
+
+.flex-direction-nav li a {
+    display: block;
+    position: absolute;
+    top: 50%;
+    width: 1em;
+    height: 1em;
+    margin: -1em 0 0;
+    outline: none;
+    font-size: 2em;
+    line-height: 1;
+    text-decoration: none;
+    background: none;
+}
+.flex-direction-nav li a.prev {
+    left: 0;
+    text-indent: 1em;
+}
+.flex-direction-nav li a.prev:before {
+    content: '\f104';
+    font-family: "fontawesome";
+    color: #e77b08;
+    text-align: center;
+    padding: 0.3em;
+}
+
+.flex-direction-nav li a.next{
+    right: 0;
+    text-indent: -1.3em;
+}
+.flex-direction-nav li a.next:before {
+    content: '\f105';
+    font-family: "fontawesome";
+    color: #e77b08;
+    text-align: center;
+    padding: 0.3em;
+}
+
+/* =============================================================================
+ *    User login / register / password pages
+ * ========================================================================== */
+/*
+ * General settings
+ */
+.page-user #user_register_form,
+.page-user #user_login_form,
+.page-user .create-account,
+.page-user #user_pass_form {
+    clear: both;
+    float: none;
+    width: auto;
+}
+
+.page-user #user-register-form h1,
+.page-user #user_login_form h1,
+.page-user .create-account h2,
+.page-user #user_pass_form h1 {
+    font: normal 300 38px/38px "Open Sans", Arial, sans-serif;
+}
+/* Buttons */
+.page-user #user-register-form .form-submit,
+.page-user #user_login_form .form-submit,
+.page-user #user_pass_form .form-submit,
+.page-user a.login-register {
+    margin-left: 0;
+    padding: 0.625em 1em;
+    font-size: 1em;
+    color: white;
+    text-transform: none;
+    line-height: 1.2;
+    -moz-border-radius: 0.25em;
+    -webkit-border-radius: 0.25em;
+    border-radius: 0.25em;
+    border: none;
+    background: #e77b08;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #f69b21), color-stop(1, #e77b08));
+    background: -moz-linear-gradient(top center, #f69b21 0%, #e77b08 100%);
+}
+.page-user #user-register-form .form-submit:hover,
+.page-user #user_pass_form .form-submit:hover,
+.page-user a.login-register:hover {
+    background: #f69b21;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #e77b08), color-stop(1, #f69b21));
+    background: -moz-linear-gradient(top center, #e77b08 0%, #f69b21 100%);
+}
+.page-user #user_login_form .form-submit {
+    background: #4d9697;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #63b1b3), color-stop(1, #4d9697));
+    background: -moz-linear-gradient(top center, #63b1b3 0%, #4d9697 100%);
+}
+.page-user #user_login_form .form-submit:hover {
+    background: #63b1b3;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #4d9697), color-stop(1, #63b1b3));
+    background: -moz-linear-gradient(top center, #4d9697 0%, #63b1b3 100%);
+}
+/*
+ * User login page
+ */
+.page-user form#user-login {
+    position: relative;
+    padding: 2em 0;
+    border: none;
+}
+.page-user #user_login_form,
+.page-user .create-account {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    width: 100%;
+    vertical-align: top;
+    padding: 0 0 2em;
+    border: none;
+}
+.page-user #user_login_form {
+    border-bottom: 1px solid #444;
+}
+.page-user #user_login_form .form-item label,
+.page-user #user_login_form .form-item input.form-text {
+    width: 100%;
+    line-height: 1.1;
+}
+.page-user form#user-login #user_login_form .form-actions-wrapper {
+    position: relative;
+    padding: 1em 0 0;
+}
+.page-user form#user-login #user_login_form .login-password {
+    display: inline-block;
+    margin:  0.5em 0;
+    color: #4d9697;
+}
+.page-user form#user-login #user_login_form .login-password:hover {
+    color: #4d9697;
+    text-decoration: underline;
+}
+.page-user form#user-login #user_login_form div.form-actions {
+    display: inline-block;
+    position: absolute;
+    right: 0;
+    vertical-align: middle;
+    margin: 0;
+}
+.page-user a.login-register {
+    display: block;
+    position: absolute;
+    right: 0;
+    bottom: 2em;
+}
+
+/*
+ * User register / password pages
+ */
+.page-user form#user-register-form,
+.page-user form#user-pass {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow: hidden;
+    max-width: 40em;
+    vertical-align: top;
+    margin: 1em 0;
+}
+.page-user form#user-register-form .form-actions,
+.page-user form#user-pass .form-actions {
+    margin-top: 2em;
+}
+.page-user form#user-register-form .form-actions .form-submit,
+.page-user form#user-pass .form-actions  .form-submit {
+    float: right;
+}
+.page-user form#user-register-form .form-actions .back-to-login,
+.page-user form#user-pass .back-to-login {
+    float: left;
+    margin: 0;
+}
+.page-user form#user-register-form .form-actions .back-to-login .login-account,
+.page-user form#user-pass .back-to-login .login-account {
+    display: inline-block;
+    margin-top:  0.5em;
+    color: #4d9697;
+}
+.page-user form#user-register-form .form-actions .back-to-login:before,
+.page-user form#user-pass .back-to-login:before {
+    content: '\f112';
+    font-family: "fontawesome";
+    color: #4d9697;
+    text-align: center;
+    padding: 0.3em;
+}
+.page-user form#user-register-form .form-actions .back-to-login .login-account:hover,
+.page-user form#user-pass .back-to-login .login-account:hover {
+    color: #4d9697;
+    text-decoration: underline;
+}
+
+
+
+/* =============================================================================
+ *
+ *
+ *      Site specific element styling starts here...
+ *
+ *
+ * ========================================================================== */
+
+/* =============================================================================
+ *    WYSIWYG body (general)
+ * ========================================================================== */
+.node.node-full .field-name-body {
+    margin-top: 35px;
+    padding: 0;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+}
+.node.node-full .field-name-body strong,
+.node.node-full .field-name-body h1,
+.node.node-full .field-name-body h2,
+.node.node-full .field-name-body h3 {
+    margin: 16px 0;
+    font-family: "FedraSansStdMedium", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+.node.node-full .field-name-body p {
+    margin: 0 0 16px;
+    font-family: "FedraSansStdLight", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.2;
+}
+.node.node-full .field-name-field-documents .field-label {
+    width: auto;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 16px;
+    color: #f69b21;
+}
+.node.node-full .field-name-field-documents .field-item a {
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    color: #f69b21;
+}
+.node.node-full .field-name-field-documents .field-item a:hover {
+    color: #e77b08;
+}
+
+/* =============================================================================
+ *    Views lists (general)
+ * ========================================================================== */
+body.node-type-page #page-title,
+body.node-type-team-member #page-title,
+body.page-views #page-title,
+body.node-type-webform #page-title {
+    margin: 30px 0;
+    font-family: "FedraSansStdMedium", sans-serif;
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 1.2;
+}
+
+body.page-contact .view-basic-pages .view-content,
+body.page-views .view-team-members .view-content,
+body.page-views .link-items .view-content {
+    font-size: 0; /* prevent additional 4px between inline-blocks, only possible when font-sizes inside row are set in px */;
+    margin-right: -30px;
+}
+body.page-views .view-basic-pages .views-row,
+body.page-views .view-team-members .views-row,
+body.page-views .link-items .views-row {
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    vertical-align: top;
+    padding: 0;
+}
+
+/* link items pages */
+body.page-views .link-items .views-row {
+    width: 213px;
+    margin: 0 30px 30px 0;
+    border-top: 10px solid #f69b21;
+}
+/* Team members page */
+body.page-views .view-team-members .views-row {
+    width: 160px;
+    margin: 0 20px 30px 0;
+    border-top: 10px solid #f69b21;
+}
+/* Contact page */
+body.page-contact .view-basic-pages .views-row {
+    width: 300px;
+    margin: 0 20px 30px 0;
+    border-top: 10px solid #f69b21;
+}
+/* Membership / Volunteering page (block list) */
+body.page-membership .view-basic-pages .views-row:first-child,
+body.page-volunteering .view-basic-pages .views-row:first-child {
+    border-top: 10px solid #f69b21;
+}
+body.page-membership .node-block.node-full .field-name-title,
+body.page-volunteering .node-block.node-full .field-name-title {
+    display: none;
+}
+
+
+/* =============================================================================
+ *    Link item teaser
+ * ========================================================================== */
+.node-link-item.node-teaser .field-name-title h2 {
+    margin: 0;
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 16px;
+    line-height: 35px;
+    text-align: left;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.node-link-item.node-teaser .group-body {
+    height: 175px;
+    position: relative;
+    background-color: #f69b21;
+}
+.node-link-item.node-teaser .field-name-field-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 30px;
+    left: 10px;
+}
+.node-link-item.node-teaser .field-name-field-icon img {
+    max-height: 50px;
+    width:auto;
+}
+.node-link-item.node-teaser .field-name-field-link {
+    cursor: pointer;
+    padding: 100px 10px 0;
+    font-family: "FedraSansStdBook", sans-serif;
+    font-size: 16px;
+    word-wrap: normal;
+    word-break: normal;
+}
+.node-link-item.node-teaser .field-name-field-link a,
+.node-link-item.node-teaser .field-name-field-link div {
+    display: block;
+    color: #fff;
+    width:100%;
+}
+
+
+/* ==================================================================================
+ *   Basic page Full styling
+ * ================================================================================== */
+.node-page.node-full .region-inner {
+    margin: 0;
+    border-top: 10px solid #f69b21;
+}
+
+
+/* ==================================================================================
+ *   Sidebar Block styling
+ * ================================================================================== */
+
+.region-sidebar-second .region-inner {
+    margin: 84px 0 0;
+}
+div.block.sidebar {
+    width: 100%;
+}
+.region-sidebar-second .node-block.node-full .region-inner {
+    margin: 0;
+    border-top: 10px solid #f69b21;
+}
+.region-sidebar-second .node-block.node-full .field-name-title {
+    display: none;
+}
+/* Sidebar headers thick */
+.region-sidebar-second #node-56.node-full .field-name-body p,
+.region-sidebar-second #node-38.node-full .field-name-body p,
+.region-sidebar-second #node-74.node-full .field-name-body p {
+    font-family: "FedraSansStdMedium", sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
+.region-sidebar-second .node-block.node-full ul {
+    list-style: none;
+    padding:0;
+    margin:0;
+}
+
+.region-sidebar-second .node-block.node-full li {
+    margin-bottom: 1em;
+    padding-left: 1.2em;
+    text-indent: -1.2em;
+}
+.region-sidebar-second .node-block.node-full li:before {
+    content: "●";
+    color: #f69b21;
+    padding-right: 0.2em;
+}
+.region-sidebar-second .node-block.node-full li p {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+
+/* =============================================================================
+ *    NodeBlock Full (basic page views)
+ * ========================================================================== */
+.node-block.node-full .region-inner {
+    margin: 0;
+}
+.node-block.node-full .field-name-title h2 {
+    margin: 35px 0;
+    font-family: "FedraSansStdBold",sans-serif;
+    font-size: 16px;
+}
+
+
+/* =============================================================================
+ *    Team member Teaser
+ * ========================================================================== */
+.node-team-member.node-teaser .region-inner {
+    position: relative;
+    margin: 0;
+}
+.node-team-member.node-teaser .field-name-field-job-title .field-item {
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 35px;
+    padding-top: 3px;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 14px;
+    line-height: 1;
+}
+.node-team-member.node-teaser .field-name-field-full-name .field-item {
+    margin: 10px 0 4px;
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 16px;
+    line-height: 1;
+}
+.node-team-member.node-teaser .field-name-body {
+    cursor: pointer;
+    position: absolute;
+    overflow: hidden;
+    top: 35px;
+    left: 0;
+    width: 140px;
+    height: 149px;
+    margin: 0;
+    padding: 10px;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 13px;
+    color: #fff;
+    line-height: 1.1;
+    text-overflow: clip;
+    -webkit-transition: opacity 1s ease;
+    -moz-transition: opacity 1s ease;
+    transition: opacity 1s ease;
+    opacity: 0.0;
+    background-color: #f69b21;
+}
+.node-team-member.node-teaser .field-name-body:hover {
+    opacity: 1.0;
+}
+
+/* =============================================================================
+ *    Team member Full
+ * ========================================================================== */
+.node-team-member.node-full .region-inner {
+    position: relative;
+    margin: 0;
+    border-top: 10px solid #f69b21;
+}
+.node-team-member.node-full .field-name-field-job-title .field-item {
+    height: 35px;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 16px;
+    line-height: 2.0;
+}
+
+
+/* =============================================================================
+ *    News Teaser
+ * ========================================================================== */
+.node-article.node-teaser .region-inner {
+    position: relative;
+    margin: 0 0 60px;
+    border-top: 10px solid #f69b21;
+}
+.node-article.node-teaser .field-name-post-date .field-item {
+    padding-top: 15px;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 14px;
+    line-height: 1.4;
+}
+.node-article.node-teaser .field-name-field-image {
+    margin-top: 35px;
+}
+.node-article.node-teaser .field-name-field-image figure {
+    line-height: 0; /* corrects margin below image */
+}
+.node-article.node-teaser .field-name-title h2 {
+    margin: 35px 0 0;
+}
+.node-article.node-teaser .field-name-title h2 a,
+.node-article.node-teaser .field-name-title h2 a:hover {
+    font-family: "FedraSansStdBook",sans-serif;
+    font-size: 32px;
+    font-weight: normal;
+    color: #222222;
+    line-height: 1;
+}
+.node-article.node-teaser .field-name-body {
+    margin-top: 35px;
+    padding: 0;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+}
+.node-article.node-teaser .field-name-body strong,
+.node-article.node-teaser .field-name-body h1,
+.node-article.node-teaser .field-name-body h2,
+.node-article.node-teaser .field-name-body h3 {
+    margin: 16px 0;
+    font-family: "FedraSansStdMedium", sans-serif;
+    font-size: 16px;
+}
+.node-article.node-teaser .field-name-body p {
+    margin: 0 0 16px;
+    font-family: "FedraSansStdLight", sans-serif;
+    font-size: 16px;
+    line-height: 1.2;
+}
+.node-article.node-teaser .field-name-field-documents .field-label {
+    display: none;
+}
+
+/* ShareThis for Full and Teaser */
+.node-article .field-name-sharethis-block {
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    right: 0;
+}
+.node-article .sharethis-wrapper > span .stButton,
+.node-article .sharethis-wrapper > span .stButton .chicklets {
+    overflow: hidden;
+    margin: 0;
+    padding: 0 !important;
+    width: 21px !important;
+    height: 20px;
+    line-height: 20px;
+}
+
+.node-article .field-name-sharethis-block .stButton .facebook {
+    background-image: url("images/icons_social_orange.png");
+}
+.node-article .field-name-sharethis-block .stButton .twitter {
+    background-image: url("images/icons_social_orange.png");
+    background-position: -21px 0;
+}
+.node-article .field-name-sharethis-block .stButton .googleplus {
+    background-image: url("images/icons_social_orange.png");
+    background-position: -42px 0;
+}
+.node-article .field-name-sharethis-block .stButton .email {
+    background-image: url("images/icons_social_orange.png");
+    background-position: -63px 0;
+}
+
+/* =============================================================================
+ *    News Full
+ * ========================================================================== */
+.node-article.node-full .region-inner {
+    position: relative;
+    margin: 0;
+    border-top: 10px solid #f69b21;
+}
+.node-article.node-full .field-name-post-date .field-item {
+    padding-top: 15px;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 16px;
+    line-height: 1.25;
+}
+.node-article.node-full .field-name-field-image {
+    margin-top: 35px;
+}
+.node-article.node-full .field-name-field-image figure {
+    line-height: 0; /* corrects margin below image */
+}
+.node-article.node-full .field-name-title h2 {
+    margin: 35px 0 0;
+    font-family: "FedraSansStdBook",sans-serif;
+    font-size: 32px;
+    font-weight: normal;
+    color: #222222;
+    line-height: 1;
+}
+
+
+/* ========================================================================
+ * Isotope Filter/sorting button groups
+ * ======================================================================== */
+.region-highlighted .region-inner {
+    margin-bottom: 15px;
+    padding: 0;
+}
+
+.region-highlighted .ui-group {
+    display: block;
+    margin: 0;
+    width: 100%;
+    line-height: 0;
+}
+.buttons-country .ui-group {
+    background: url('images/filter_background.png') no-repeat 0 0;
+    background-size: 100% 100%;
+}
+.region-highlighted .ui-group h3 {
+    display: none;
+}
+
+.region-highlighted .button-group {
+    display: inline-block;
+    width: 100%;
+    height: 35px;
+    font-size: 0; /* prevents distance between buttons (inline-block) */
+}
+.region-highlighted .button-group .button {
+    display: inline-block;
+    cursor: pointer;
+    margin: 0;
+    padding: 0 5px 0;
+    width: 25%;
+    text-shadow: none;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: none;
+    outline: none;
+    background: none;
+}
+.region-highlighted .button-group .button.reset {
+    padding-left: 5px;
+    width: 120px;
+    max-width: 20%;
+    font-size: 13px;
+    text-align: left;
+}
+.region-highlighted .button-group .button:hover,
+.region-highlighted .button-group .button:active,
+.region-highlighted .button-group .button.selected {
+    font-weight: bold;
+    text-decoration: underline;
+    text-shadow: none;
+    background: none;
+}
+
+.buttons-country .button-group .button {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    padding: 0 5px 0;
+    font-family: "FedraSansStdLight", sans-serif;
+    font-size: 12px;
+    color: #fff;
+    text-align: center;
+    line-height: 35px;
+    background-size: auto 25px;
+}
+
+.buttons-topic .button-group .button {
+    overflow: hidden;
+    text-overflow: clip;
+    white-space: nowrap;
+    font-family: "FedraSansStdMedium", sans-serif;
+    font-size: 12px;
+    text-align: center;
+    color: #f69b21;
+    line-height: 35px;
+}
+.buttons-topic .button-group .button.healthcare {
+    color: #6b506f;
+}
+.buttons-topic .button-group .button.family-and-women {
+    color: #c59a1b;
+}
+.buttons-topic .button-group .button.home-for-children {
+    color: #299d67;
+}
+.buttons-topic .button-group .button.education {
+    color: #63b1b3;
+}
+
+
+
+/* =============================================================================
+ *    Project Teaser Masonry
+ * ========================================================================== */
+.isotope {
+    width: 100%;
+    margin-right: -20px;
+}
+.isotope .grid-sizer,
+.isotope .isotope-item {
+    width: 300px;
+}
+.isotope .isotope-item {
+    margin-bottom: 20px;
+}
+.isotope .gutter-sizer {
+    width: 20px;
+}
+.isotope .isotope-item .at-panel > .region > .region-inner {
+    margin: 0;
+}
+
+
+.node-project.node-teaser .field,
+.isotope-item  .node-link-item.node-teaser .field {
+    margin: 0;
+    padding: 0;
+}
+.node-project.node-teaser .field-name-field-topic ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.node-project.node-teaser .field-name-field-topic ul li,
+.isotope-item  .node-link-item.node-teaser .field-name-title h2 {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0;
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 13px;
+    font-weight: normal;
+    line-height: 20px;
+}
+
+.node-project.node-teaser .field-name-field-images figure,
+.isotope-item .node-link-item.node-teaser .field-name-field-icon figure {
+    line-height: 0;
+}
+.node-project.node-teaser .field-name-field-images img {
+    width: 100%;
+}
+.isotope-item .node-link-item.node-teaser .field-name-field-icon {
+    cursor: pointer;
+    position: absolute;
+    top: 8px;
+    left: 8px;
+}
+.isotope-item .node-link-item.node-teaser .field-name-field-icon img {
+    max-height: 50px;
+    width:auto;
+}
+
+.node-project.node-teaser .group-body,
+.isotope-item .node-link-item.node-teaser .group-body {
+    overflow: hidden;
+    position: relative;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    height: 65px;
+    padding: 8px;
+    color: #fff;
+}
+.isotope-item .node-link-item.node-teaser .group-body {
+    height: 262px;
+}
+.node-project.node-teaser .group-body .field-name-field-organisation,
+.isotope-item .node-link-item.node-teaser .field-name-field-link {
+    margin-bottom: 2px;
+    font-family: "FedraSansStdLight", sans-serif;
+    font-size: 13px;
+    line-height: 1.2;
+}
+.node-project.node-teaser .group-body .field-name-title {
+    font-family: "FedraSansStdLight", sans-serif;
+    font-size: 13px;
+    word-break: normal;
+    line-height: 1.2;
+}
+.isotope-item .node-link-item.node-teaser .field-name-field-link {
+    cursor: pointer;
+    font-size: 16px;
+    padding-top: 60px;
+}
+.isotope-item .node-link-item.node-teaser .field-name-field-link a,
+.isotope-item .node-link-item.node-teaser .field-name-field-link div {
+    display: block;
+    color: #fff;
+    width:100%;
+}
+
+/* Placeholder */
+.isotope-item .placeholder {
+    height: 0;
+}
+.isotope-item .placeholder .at-panel > .region > .region-inner {
+    display: none;
+}
+
+/*
+    different topic colors
+    education: #63b1b3 home: #299d67 health: #6b506f family: #c59a1b
+*/
+.isotope-item.healthcare .node-project.node-teaser .field-name-field-topic ul li {
+    border-top: 4px solid #6b506f;
+}
+.isotope-item.healthcare .node-project.node-teaser .group-body {
+    background-color: #6b506f;
+}
+.isotope-item.family-and-women .node-project.node-teaser .field-name-field-topic ul li {
+    border-top: 4px solid #c59a1b;
+}
+.isotope-item.family-and-women .node-project.node-teaser .group-body {
+    background-color: #c59a1b;
+}
+.isotope-item.home-for-children .node-project.node-teaser .field-name-field-topic ul li {
+    border-top: 4px solid #299d67;
+}
+.isotope-item.home-for-children .node-project.node-teaser .group-body {
+    background-color: #299d67;
+}
+.isotope-item.education .node-project.node-teaser .field-name-field-topic ul li {
+    border-top: 4px solid #63b1b3;
+}
+.isotope-item.education .node-project.node-teaser .group-body {
+    background-color: #63b1b3;
+}
+.isotope-item .node-link-item.node-teaser .group-body {
+    background-color: #f69b21;
+}
+.isotope-item  .node-link-item.node-teaser .field-name-title h2 {
+    border-top: 4px solid #f69b21;
+}
+
+/* =============================================================================
+ *    Project Full Page
+ * ========================================================================== */
+
+/* Move content under header (see page--node--project.tpl.php for project page changes)*/
+.page-node-project #branding {
+    height: 80px;
+}
+.page-node-project #footer {
+    margin-top: 100px;
+}
+
+.node-project.node-full .field {
+    margin: 0;
+    padding: 0;
+}
+.node-project.node-full .group-topic-share {
+    position: relative;
+}
+.node-project.node-full .field-name-field-topic ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-top: 10px solid #f69b21;
+}
+.node-project.node-full .field-name-field-topic ul li {
+    padding-top: 15px;
+    font-family: "FedraSansStdBold",sans-serif;
+    font-size: 16px;
+    color: #f69b21;
+    line-height: 1.25;
+}
+.node-project.node-full .field-name-sharethis-block {
+    display: inline-block;
+    position: absolute;
+    top: 25px;
+    right: 0;
+}
+.node-project.node-full .field-name-title h2 {
+    margin: 25px 0;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 32px;
+}
+.node-project.node-full .field-name-field-organisation,
+.node-project.node-full .field-name-field-location {
+    display: inline-block;
+    margin-right: 0;
+}
+.node-project.node-full .field-name-field-organisation .field-label,
+.node-project.node-full .field-name-field-location .field-label {
+    display: inline;
+    margin-right: 0;
+    width: auto;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 16px;
+    color: #222222;
+}
+.node-project.node-full .field-name-field-organisation .field-item,
+.node-project.node-full .field-name-field-location .field-item {
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: bottom;
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 16px;
+}
+.node-project.node-full .field-name-field-country {
+    display: inline-block;
+    vertical-align: top;
+}
+.node-project.node-full .field-name-field-country ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.node-project.node-full .field-name-field-country ul li {
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 16px;
+}
+.node-project.node-full .field-name-field-documents .field-label {
+    color: #222222;
+}
+
+
+/* Set colors for different topics */
+.node-project.node-full.healthcare .field-name-field-topic ul {
+    border-top: 10px solid #6b506f;
+}
+.node-project.node-full.healthcare .field-name-field-topic ul li,
+.node-project.node-full.healthcare .field-name-field-documents .field-item a {
+    color: #6b506f;
+}
+.node-project.node-full.family-and-women .field-name-field-topic ul {
+    border-top: 10px solid #c59a1b;
+}
+.node-project.node-full.family-and-women .field-name-field-topic ul li,
+.node-project.node-full.family-and-women .field-name-field-documents .field-item a {
+    color: #c59a1b;
+}
+.node-project.node-full.home-for-children .field-name-field-topic ul {
+    border-top: 10px solid #299d67;
+}
+.node-project.node-full.home-for-children .field-name-field-topic ul li,
+.node-project.node-full.home-for-children .field-name-field-documents .field-item a {
+    color: #299d67;
+}
+.node-project.node-full.education .field-name-field-topic ul {
+    border-top: 10px solid #63b1b3;
+}
+.node-project.node-full.education .field-name-field-topic ul li,
+.node-project.node-full.education .field-name-field-documents .field-item a {
+    color: #63b1b3;
+}
+
+/* ShareThis buttons for Full */
+.node-project.node-full.healthcare .field-name-sharethis-block .stButton .facebook {
+    background-image: url("images/icons_social_violet.png");
+}
+.node-project.node-full.healthcare .field-name-sharethis-block .stButton .twitter {
+    background-image: url("images/icons_social_violet.png");
+    background-position: -22px 0;
+}
+.node-project.node-full.healthcare .field-name-sharethis-block .stButton .googleplus {
+    background-image: url("images/icons_social_violet.png");
+    background-position: -44px 0;
+}
+.node-project.node-full.healthcare .field-name-sharethis-block .stButton .email {
+    background-image: url("images/icons_social_violet.png");
+    background-position: -66px 0;
+}
+.node-project.node-full.family-and-women .field-name-sharethis-block .stButton .facebook {
+    background-image: url("images/icons_social_brown.png");
+}
+.node-project.node-full.family-and-women .field-name-sharethis-block .stButton .twitter {
+    background-image: url("images/icons_social_brown.png");
+    background-position: -22px 0;
+}
+.node-project.node-full.family-and-women .field-name-sharethis-block .stButton .googleplus {
+    background-image: url("images/icons_social_brown.png");
+    background-position: -44px 0;
+}
+.node-project.node-full.family-and-women .field-name-sharethis-block .stButton .email {
+    background-image: url("images/icons_social_brown.png");
+    background-position: -66px 0;
+}
+.node-project.node-full.home-for-children .field-name-sharethis-block .stButton .facebook {
+    background-image: url("images/icons_social_green.png");
+}
+.node-project.node-full.home-for-children .field-name-sharethis-block .stButton .twitter {
+    background-image: url("images/icons_social_green.png");
+    background-position: -22px 0;
+}
+.node-project.node-full.home-for-children .field-name-sharethis-block .stButton .googleplus {
+    background-image: url("images/icons_social_green.png");
+    background-position: -44px 0;
+}
+.node-project.node-full.home-for-children .field-name-sharethis-block .stButton .email {
+    background-image: url("images/icons_social_green.png");
+    background-position: -66px 0;
+}
+.node-project.node-full.education .field-name-sharethis-block .stButton .facebook {
+    background-image: url("images/icons_social_blue.png");
+}
+.node-project.node-full.education .field-name-sharethis-block .stButton .twitter {
+    background-image: url("images/icons_social_blue.png");
+    background-position: -22px 0;
+}
+.node-project.node-full.education .field-name-sharethis-block .stButton .googleplus {
+    background-image: url("images/icons_social_blue.png");
+    background-position: -44px 0;
+}
+.node-project.node-full.education .field-name-sharethis-block .stButton .email {
+    background-image: url("images/icons_social_blue.png");
+    background-position: -66px 0;
+}
+
+
+
+/* =============================================================================
+ *    Webform Donate
+ * ========================================================================== */
+
+.node-webform.node-full .node-content {
+    margin: 0;
+    border-top: 10px solid #f69b21;
+}
+.node-webform.node-full .field-name-body strong,
+.node-webform.node-full .field-name-body h1,
+.node-webform.node-full .field-name-body h2,
+.node-webform.node-full .field-name-body h3 {
+    margin: 16px 0;
+    font-family: "FedraSansStdMedium", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+.node-webform.node-full .webform-component-markup p {
+    margin: 0;
+    padding: 0;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.2;
+}
+
+.node-webform.node-full #edit-submitted-address-title {
+    display: inline-block;
+    width: 190px;
+}
+.node-webform.node-full .form-item-submitted-address-title label {
+    min-width: 50px;
+}
+.node-webform.node-full .form-item.webform-component-checkboxes,
+.node-webform.node-full .form-item.webform-component-radios {
+    display: block;
+    width: 100%;
+    margin: 20px 0 0;
+}
+.node-webform.node-full .form-item.webform-component-markup img {
+    width: 100%;
+}
+.node-webform.node-full .form-item.webform-component-textfield,
+.node-webform.node-full .form-item.webform-component-email {
+    margin:  20px 0 0;
+}
+.node-webform.node-full #webform-component-payment-method--newsletter--mailchimp-signup {
+    margin:  30px 0 0;
+}
+.node-webform.node-full #webform-component-payment-method--newsletter--mailchimp-signup label {
+    width:auto;
+    vertical-align: middle;
+}
+.node-webform.node-full .form-item.webform-component-checkboxes label,
+.node-webform.node-full .form-item.webform-component-radios label,
+.node-webform.node-full .form-item.webform-component-textfield label,
+.node-webform.node-full .form-item.webform-component-email label {
+    line-height: 1.2;
+    vertical-align: middle;
+}
+
+.node-webform.node-full #edit-submitted-set-amount-amount .form-item:not(:last-child) label {
+    font-family: "FedraSansStdBold", sans-serif;
+    font-size: 20px;
+    font-weight: normal;
+    line-height: 1.5;
+}
+.node-webform.node-full #edit-submitted-set-amount-amount .form-item:not(:last-child) label:after {
+    content: "CHF";
+    font-family: "FedraSansStdBook", sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+}
+
+/* =============================================================================
+ *    Footer blocks
+ * ========================================================================== */
+/* Address block */
+#footer .footer-address-block {
+    display: none;
+    margin: 0;
+    padding:0;
+    width: 51%;
+    vertical-align: top;
+    color: #fff;
+}
+.footer-address-block .node-block.node-full .field-name-title h2 {
+    margin: 0 0 22px;
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 13px;
+}
+.footer-address-block .node-block.node-full .field-name-body {
+    margin: 0;
+}
+.footer-address-block .node-block.node-full .field-name-body strong,
+.footer-address-block .node-block.node-full .field-name-body h1,
+.footer-address-block .node-block.node-full .field-name-body h2,
+.footer-address-block .node-block.node-full .field-name-body h3 {
+    margin: 0;
+    font-family: "FedraSansStdMedium", sans-serif;
+    font-size: 13px;
+}
+.footer-address-block .node-block.node-full .field-name-body p {
+    margin: 0 0 5px;
+    font-family: "FedraSansStdLight",sans-serif;
+    font-size: 13px;
+    line-height: 1.1;
+}
+.footer-address-block .node-block.node-full .field-name-body a {
+    font-weight: bolder;
+    color: #fff;
+    outline: none;
+}
+.footer-address-block .node-block.node-full .field-name-body a:hover {
+    color: #fff;
+    text-decoration: underline;
+    outline: none;
+}
+
+/* Newsletter block */
+#block-mailchimp-signup-newsletter {
+    display: inline-block;
+    position: relative;
+    margin-left: 20px;
+    padding: 0;
+    vertical-align: top;
+    width: 80%;
+    color: #fff;
+}
+#block-mailchimp-signup-newsletter .mailchimp-newsletter-wrapper{
+    display: none;
+}
+
+
+#block-mailchimp-signup-newsletter .block-title {
+    margin: 0 0 22px;
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 13px;
+}
+#block-mailchimp-signup-newsletter .form-item label {
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    max-width: 190px;
+    padding: 0 10px;
+    font-family: "FedraSansStdBook",sans-serif;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.5;
+    color: #222222;
+}
+#block-mailchimp-signup-newsletter .form-item input.form-text {
+    display: inline-block;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 190px;
+    height: 20px;
+    font-family: "FedraSansStdMedium",sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    line-height: 1.25;
+    color: #e77b08;
+    outline: none;
+    border: 1px solid #fff;
+    background-color: rgba(255,255,255, 0.75);
+}
+#block-mailchimp-signup-newsletter .form-item input.form-text:focus {
+    background-color: rgba(255,255,255, 1.0);
+}
+
+#block-mailchimp-signup-newsletter .form-item-mergevars-FNAME label,
+#block-mailchimp-signup-newsletter .form-item-mergevars-FNAME input.form-text {
+    position: absolute;
+    top: 35px;
+    left: 0;
+}
+#block-mailchimp-signup-newsletter .form-item-mergevars-LNAME label,
+#block-mailchimp-signup-newsletter .form-item-mergevars-LNAME input.form-text {
+    position: absolute;
+    top: 65px;
+    left: 0;
+}
+#block-mailchimp-signup-newsletter .form-item-mergevars-EMAIL label,
+#block-mailchimp-signup-newsletter .form-item-mergevars-EMAIL input.form-text {
+    position: absolute;
+    top: 95px;
+    left: 0;
+}
+#block-mailchimp-signup-newsletter .form-submit {
+    position: absolute;
+    top: 125px;
+    left: 0;
+    padding: 4px 10px;
+    font-size: 14px;
+    line-height: 1;
+    border: 1px solid #f69b21;
+}
+
+/* =============================================================================
+ *  Search results
+ * ========================================================================== */
+
+.page-search #main-content #page-title,
+.page-search #main-content h2,
+.page-search #main-content h3 {
+    font-family: "FedraSansStdBold", sans-serif;
+}
+
+
+/* =============================================================================
+ *   Fields (classes defined and set in Display Suite)
+ * ========================================================================== */
+/*
+ *  Text areas resizing handlers
+ */
+
+.resizable-textarea .grippie {
+    display: none;
+}
+
+.field-label {
+    /* table layout */
+    margin: 0;
+    font-size: 1em;
+    line-height: 1.5;
+    font-weight: bold;
+    color: #808080;
+    width: 7em;
+}
+
+/* Read more link */
+.field-name-node-link {
+    margin: 0 1.2em;
+    float: right;
+}
+.field-name-node-link a:after {
+    content: '\f054';
+    font-family: "fontawesome";
+    font-size: 1em;
+    padding-left: 1em;
+}
+
+/* Google map */
+.google_map_field_display {
+    height: 20em;
+    width: 100%;
+    margin: 0;
+}
+
+
+
+/* =============================================================================
+ *
+ *
+ *      Administrator mode specific element styling starts here...
+ *
+ *
+ * ========================================================================== */
+
+/*
+ * Admin menu overrides
+ */
+#admin-menu {
+    margin: 0;
+    padding: 0;
+}
+
+/*
+ * Devel Module
+ */
+.dev-query {
+    background: #eee;
+    padding: 2em;
+}
+
+/*
+ * Styleguide module tweaks
+ */
+#styleguide-header {
+    padding: 0 0.625em;
+}
+
+#styleguide-header .item-list {
+    font-family: inherit;
+    margin: 0 1.25em 1.25em 0;
+    min-height: 260px;
+    width: auto;
+}
+
+#tasks {
+    margin-bottom: 1em;
+}
+
+
+/* =============================================================================
+ *   Tabs (local tasks)
+ * ========================================================================== */
+
+ul.primary {
+    border-bottom-color: #ccc;
+    margin: 1.25em 0;
+    padding: 0 0 0 5px;
+}
+
+ul.primary li {
+    display: block;
+    float: left;
+    margin: 0 1px -1px;
+}
+
+ul.primary li a {
+    background-color: #f5f5f5;
+    border-color: #ccc;
+    margin-right: 1px;
+    padding: 0 0.625em;
+    display: block;
+    float: left;
+    height: 1.5em;
+    line-height: 1.5em;
+}
+
+ul.primary li a:hover,
+ul.primary li a:focus {
+    background-color: #eee;
+    border-color: #ccc;
+}
+
+ul.primary li.active a,
+ul.primary li.active a:hover,
+ul.primary li.active a:focus {
+    background-color: #fff;
+    border-bottom-color: #fff;
+}
+
+ul.secondary {
+    border-bottom: 1px solid #ccc;
+    margin: 1em 0 0;
+    padding: 0 .3em 1em;
+}
+
+ul.secondary li {
+    border-right: 0;
+    list-style: none;
+    padding: 0 0.625em 0 0;
+}
+
+ul.secondary li a {}
+
+ul.secondary li a:hover,
+ul.secondary li a.active {
+    border-bottom: none;
+    text-decoration: underline;
+}
+
+
+/* =============================================================================
+ *   Unpublished nodes
+ * ========================================================================== */
+
+/*
+ * Unpublished nodes
+ */
+.node-unpublished,
+.comment-unpublished {}
+
+.node-unpublished,
+.comment-unpublished {}
+
+.node-unpublished p.unpublished,
+.comment-unpublished p.unpublished {
+    color: pink;
+    color: rgba(239, 170, 170, 0.4);
+    font-family: Impact,"Arial Narrow",Helvetica,sans-serif;
+    font-size: 4em;
+    font-weight: bold;
+    height: 0;
+    line-height: 1.2;
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    text-align: center;
+    text-transform: uppercase;
+    word-wrap: break-word;
+}
+
+
+/* =============================================================================
+ *    Maintenance pages
+ * ========================================================================== */
+
+.maintenance-page {}
+.maintenance-page .container {
+    padding: 2.5em 0;
+}
+
+.maintenance-page #site-name,
+.maintenance-page #page-title {
+    margin: 0;
+}
+
+.db-offline {}
+
+.db-offline .container {
+    margin: 0 auto;
+    padding: 2.5em 0;
+    width: 100%;
+    max-width: 960px;
+}
+
+.db-offline div.messages {
+    margin: 1.25em 0 0;
+}
+
+.db-offline #content {
+    padding: 1.25em 0;
+}
+
+

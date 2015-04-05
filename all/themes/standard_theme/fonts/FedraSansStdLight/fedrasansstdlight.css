@@ -1,0 +1,8 @@
+@font-face {
+    font-family: 'FedraSansStdLight';
+    src: url('fedrasansstdlight.eot');
+    src: url('fedrasansstdlight.eot') format('embedded-opentype'),
+         url('fedrasansstdlight.woff') format('woff'),
+         url('fedrasansstdlight.ttf') format('truetype'),
+         url('fedrasansstdlight.svg#FedraSansStdLight') format('svg');
+}
