@@ -144,6 +144,7 @@
 
     #superfish-1 {
         float: left; /* float parent to contain children */
+        width: 100%;
         font-family: "FedraSansStdMedium", sans-serif;
         font-size: 0.95em;
         color: #fff;
