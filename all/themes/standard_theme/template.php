@@ -29,7 +29,7 @@ function standard_theme_preprocess_html(&$vars) {
   global $theme_key;
 
   // add font awesome bootstrap
-  drupal_add_html_head_link(array('href' => '//netdna.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css', 'rel' => 'stylesheet'));
+  drupal_add_html_head_link(array('href' => 'https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css', 'rel' => 'stylesheet'));
 
   // make sure jQuery UI and effects is loaded for anonymous users
   drupal_add_library('system', 'ui');
@@ -88,8 +88,36 @@ function standard_theme_preprocess_page(&$vars) {
 
   // add node page template suggestions
   if (isset($vars['node'])) {
-    $suggest = "page__node__{$vars['node']->type}";
+    $node = $vars['node'];
+    $suggest = "page__node__{$node->type}";
     $vars['theme_hook_suggestions'][] = $suggest;
+
+    if ($node->type == 'article' || $node->type == 'project') {
+      //
+      // shariff button definition
+      global $base_url, $language;
+
+      libraries_load('shariff', 'naked');
+      $lang = '/' . $language->language;
+      $node_url = $base_url . $lang . '/node/' . $node->nid;
+      $mail_subject = ($node->type == 'article') ?
+        t("Apia News '@title'...", array('@title' => $node->title)) :
+        t("Apia Projekt '@title'...", array('@title' => $node->title));
+      $subject = variable_get('shariff_mail_subject', $mail_subject);
+      $html_body =  $node->body[LANGUAGE_NONE][0]['value'] . t('<p><br><a href="@link">Hier geht es zum Projekt</a></p><p>Liebe Grüsse</p>', array('@link' => $node_url));
+      $mail_body = drupal_html_to_text($html_body);
+      $mail_descr = variable_get('shariff_mail_body', $mail_body);
+
+      $vars['shariff_attrs'] = array(
+        'data-services' => '["facebook","twitter","mail","whatsapp"]',
+        'data-orientation' => "horizontal",
+        'data-mail-url' => "mailto:",
+        'data-mail-subject' => $subject ? $subject : $mail_subject,
+        'data-mail-body' => $mail_descr ? $mail_descr : $mail_body,
+        'data-lang' => "{$language->language}",
+        'data-url' => $node_url,
+      );
+    }
   }
 
 }

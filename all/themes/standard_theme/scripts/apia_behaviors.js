@@ -7,6 +7,20 @@
 (function ($) {
 
     /**
+     * Set a class defining the device, e.g. mobile-device or desktop.
+     */
+    Drupal.behaviors.setMobileClass = {
+      attach: function (context) {
+        if (isMobile.any) {
+          $('body').addClass('mobile-device');
+        }
+        else {
+          $('body').addClass('desktop');
+        }
+      }
+    };
+
+    /**
      * Allows full size clickable items.
      */
     Drupal.behaviors.fullSizeClickableItems = {

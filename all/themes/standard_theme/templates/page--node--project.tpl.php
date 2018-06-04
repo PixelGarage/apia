@@ -178,6 +178,9 @@
           <?php if ($content = render($page['content'])): ?>
             <div id="content" class="region">
               <?php print $content; ?>
+              <div class="social-buttons">
+                <div class="shariff" <?php print drupal_attributes($shariff_attrs); ?>></div>
+              </div>
             </div>
           <?php endif; ?>
 

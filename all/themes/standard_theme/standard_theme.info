@@ -71,6 +71,7 @@
   ; following as a guide:
 
   ; ie_scripts[lte IE 8][] = scripts/my-script.js
+  scripts[] = scripts/isMobile.min.js
   scripts[] = scripts/apia_behaviors.js
 
 

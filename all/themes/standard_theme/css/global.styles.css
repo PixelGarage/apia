@@ -1224,65 +1224,61 @@ tr.even td.active {
 }
 
 /* =============================================================================
- *   ShareThis links block
+ *   Shariff social media block
  * ========================================================================== */
-.block-sharethis .block-inner {
-    margin: 0;
+
+.social-buttons {
+margin-bottom: 20px;
+text-align: center;
 }
-.sharethis-wrapper {
-    max-width: 50em;
-    margin: 0 auto;
-    text-align: center;
+.social-buttons .shariff {
+  display: inline-block;
 }
-.sharethis-wrapper > span .stButton .stLarge {
-    background-image: none !important;
-    font-size: 2em;
-    color: #222;
+.social-buttons .shariff ul {
+  display: block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  padding: 10px;
+}
+.social-buttons .shariff ul li {
+  display: inline-block;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  min-width: 40px;
+}
+.social-buttons .shariff ul li a {
+  display: block;
+  height: 40px;
+  width: auto;
+  text-decoration: none;
+  color: #f69b21;
+  border: none;
+  background: none;
+}
+.social-buttons .shariff ul li a:hover,
+.social-buttons .shariff ul li a:focus {
+  color: #e77b08;
+}
+.social-buttons .shariff ul li a span.fa {
+  display: inline-block;
+  font-size: 30px;
+  line-height: 30px;
+  text-align: center;
+  vertical-align: middle;
+}
+.social-buttons .shariff ul li a span.share_text {
+  display: none;
+}
+body.desktop .social-buttons .shariff ul li.whatsapp {
+  display: none;
+}
+.social-buttons .shariff ul.orientation-horizontal li.shariff-button {
+  width: 60px;
+  height: auto;
 }
 
-/* small buttons (chicklets)*/
-.sharethis-wrapper > span .stButton,
-.sharethis-wrapper > span .stButton .chicklets {
-    overflow: hidden;
-    margin: 0;
-    padding: 0 !important;
-    width: 22px !important;
-    height: 20px;
-    line-height: 20px;
-}
-
-
-/* Large buttons */
-.st_facebook_large .stButton .stLarge:before {
-    font-family: FontAwesome;
-    content: "\f09a";
-    display: inline-block;
-    padding: 0;
-}
-.st_twitter_large .stButton .stLarge:before {
-    font-family: FontAwesome;
-    content: "\f099";
-    display: inline-block;
-    padding: 0;
-}
-.st_googleplus_large .stButton .stLarge:before {
-     font-family: FontAwesome;
-     content: "\f0d5";
-     display: inline-block;
-     padding: 0;
-}
-.st_pinterest_large .stButton .stLarge:before {
-    font-family: FontAwesome;
-    content: "\f0d2";
-    display: inline-block;
-    padding: 0;
-}
-.st_sharethis_large .stButton .stLarge:before {
-    font-family: FontAwesome;
-    content: "\f1e0";
-    display: inline-block;
-    padding: 0;
-}
 
 
 /* =============================================================================
@@ -2092,38 +2088,6 @@ div.block.sidebar {
     display: none;
 }
 
-/* ShareThis for Full and Teaser */
-.node-article .field-name-sharethis-block {
-    display: inline-block;
-    position: absolute;
-    top: 15px;
-    right: 0;
-}
-.node-article .sharethis-wrapper > span .stButton,
-.node-article .sharethis-wrapper > span .stButton .chicklets {
-    overflow: hidden;
-    margin: 0;
-    padding: 0 !important;
-    width: 21px !important;
-    height: 20px;
-    line-height: 20px;
-}
-
-.node-article .field-name-sharethis-block .stButton .facebook {
-    background-image: url("images/icons_social_orange.png");
-}
-.node-article .field-name-sharethis-block .stButton .twitter {
-    background-image: url("images/icons_social_orange.png");
-    background-position: -21px 0;
-}
-.node-article .field-name-sharethis-block .stButton .googleplus {
-    background-image: url("images/icons_social_orange.png");
-    background-position: -42px 0;
-}
-.node-article .field-name-sharethis-block .stButton .email {
-    background-image: url("images/icons_social_orange.png");
-    background-position: -63px 0;
-}
 
 /* =============================================================================
  *    News Full
