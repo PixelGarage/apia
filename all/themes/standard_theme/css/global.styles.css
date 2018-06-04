@@ -2036,19 +2036,22 @@ div.block.sidebar {
 /* =============================================================================
  *    News Teaser
  * ========================================================================== */
-.node-article.node-teaser .region-inner {
+.node-article.node-teaser .at-panel {
     position: relative;
     margin: 0 0 60px;
     border-top: 10px solid #f69b21;
 }
 .node-article.node-teaser .field-name-post-date .field-item {
-    padding-top: 15px;
+    padding-top: 10px;
     font-family: "FedraSansStdLight",sans-serif;
     font-size: 14px;
     line-height: 1.4;
 }
 .node-article.node-teaser .field-name-field-image {
     margin-top: 35px;
+}
+.node-article.node-teaser .field-name-field-image img {
+  width: 100% !important;
 }
 .node-article.node-teaser .field-name-field-image figure {
     line-height: 0; /* corrects margin below image */
@@ -2065,7 +2068,7 @@ div.block.sidebar {
     line-height: 1;
 }
 .node-article.node-teaser .field-name-body {
-    margin-top: 35px;
+    margin-top: 20px;
     padding: 0;
     font-family: "FedraSansStdLight",sans-serif;
     font-size: 16px;
