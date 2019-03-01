@@ -80,7 +80,7 @@ function standard_theme_preprocess_page(&$vars) {
     $footer_image_alt = check_plain(variable_get('site_name' . ' footer image', t('footer image')));
     $footer_image_vars = array('path' => $footer_image_path, 'alt' => $footer_image_alt, 'attributes' => array('class' => 'site-footer-image'));
     $vars['footer_image'] = theme('image', $footer_image_vars);
-    $zewo_icon_path = $img_path . '/icon_zewo.png';
+    $zewo_icon_path = $img_path . '/zewo_logo_d.svg';
     $zewo_icon_alt = check_plain(variable_get('site_name' . ' zewo icon', t('zewo icon')));
     $zewo_icon_vars = array('path' => $zewo_icon_path, 'alt' => $zewo_icon_alt, 'attributes' => array('class' => 'site-zewo-icon'));
     $vars['zewo_icon'] = theme('image', $zewo_icon_vars);
