@@ -37,11 +37,12 @@
               list.supposition();
             }
             if (options.plugins.bgiframe || false) {
-              list.find('ul').bgIframe({opacity:false});
+              list.find('ul').bgIframe({opacity: false});
             }
           }
         });
       });
-    }
+    },
+    weight: -11,
   };
 })(jQuery);

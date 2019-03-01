@@ -41,7 +41,11 @@ function superfish_admin_settings() {
     '#type' => 'textfield',
     '#title' => t('Number of blocks'),
     '#multiple' => FALSE,
-    '#description' => t('The number of Superfish menu blocks.') . ' (' . t('Default') . ': 4' . ')' . '<br />' . t('Please note decreasing this number leads to permanent deletion of blocks.'),
+    '#description' => sprintf('%1$s (%2$s: 4)<br />%3$s',
+      t('The number of Superfish menu blocks.'),
+      t('Default'),
+      t('Please note decreasing this number leads to permanent deletion of blocks.')
+    ),
     '#default_value' => variable_get('superfish_number', 4),
   );
   return superfish_system_settings_form($form, FALSE);

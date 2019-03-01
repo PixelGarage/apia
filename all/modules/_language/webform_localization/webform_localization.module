@@ -393,7 +393,7 @@ function webform_localization_webform_submission_load(&$submissions) {
  */
 function webform_localization_webform_submission_presave(&$node, &$submission) {
   if (isset($node->tnid) && $node->tnid != 0) {
-    $submission->nid_serial = _webform_submission_serial_next_value($node->tnid);
+    $submission->serial = _webform_submission_serial_next_value($node->tnid);
   }
 }
 
@@ -889,7 +889,7 @@ function webform_localization_form_alter(&$form, &$form_state, $form_id) {
  * This is because each node in the translation set will still have a
  * unique client form_id (based on the nid, not the tnid), but mollom will
  * only know about one of those form_ids.
- * 
+ *
  * @see webform_localization_module_implements_alter()
  */
 function _webform_localization_mollom_form_alter(&$form, &$form_state, $form_id) {
@@ -1317,28 +1317,29 @@ function webform_localization_js_alter(&$javascript) {
           }
         }
       }
-    }
-  }
 
-  $do_conditionals_for_block_regular_workflow = TRUE;
-  if (module_exists('entity_translation')) {
-    //Multiple types and translation modes possible for webforms.
-    if (entity_translation_enabled_bundle('node', $node->type)) {
-      //Bundle is using entity translation, see drupal.org/node/2829894 .
-      $do_conditionals_for_block_regular_workflow = FALSE;
-    }
-  }
-  if ($do_conditionals_for_block_regular_workflow) {
-    // For cases when webform is displayed within a block, but not a page itself.
-    foreach ($javascript['settings']['data'] as &$setting) {
-      if (isset($setting['webform']['conditionals'])) {
-        foreach ($setting['webform']['conditionals'] as $k => $data) {
-          if (preg_match("/^webform-client-form-(.*)/", $k, $matches) && isset($matches[1])) {
-            $translations = translation_node_get_translations($matches[1]);
-            $correct_translation = isset($translations[$language->language]) ? $translations[$language->language] : FALSE;
-            if (!empty($correct_translation)) {
-              $setting['webform']['conditionals']['webform-client-form-' . $correct_translation->nid] = $setting['webform']['conditionals'][$k];
-              unset($setting['webform']['conditionals'][$k]);
+
+      $do_conditionals_for_block_regular_workflow = TRUE;
+      if (module_exists('entity_translation')) {
+        //Multiple types and translation modes possible for webforms.
+        if (entity_translation_enabled_bundle('node', $node->type)) {
+          //Bundle is using entity translation, see drupal.org/node/2829894 .
+          $do_conditionals_for_block_regular_workflow = FALSE;
+        }
+      }
+      if ($do_conditionals_for_block_regular_workflow) {
+        // For cases when webform is displayed within a block, but not a page itself.
+        foreach ($javascript['settings']['data'] as &$setting) {
+          if (isset($setting['webform']['conditionals'])) {
+            foreach ($setting['webform']['conditionals'] as $k => $data) {
+              if (preg_match("/^webform-client-form-(.*)/", $k, $matches) && isset($matches[1])) {
+                $translations = translation_node_get_translations($matches[1]);
+                $correct_translation = isset($translations[$language->language]) ? $translations[$language->language] : FALSE;
+                if (!empty($correct_translation)) {
+                  $setting['webform']['conditionals']['webform-client-form-' . $correct_translation->nid] = $setting['webform']['conditionals'][$k];
+                  unset($setting['webform']['conditionals'][$k]);
+                }
+              }
             }
           }
         }
