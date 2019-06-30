@@ -202,16 +202,16 @@ function mailchimp_get_api_object($classname = 'Mailchimp', $api_key = NULL) {
 }
 
 /**
- * Gets a single MailChimp list by ID.
+ * Gets a single MailChimp list/audience by ID.
  *
  * @param string $list_id
- *   The unique ID of the list provided by MailChimp.
+ *   The unique ID of the list/audience provided by MailChimp.
  * @param bool $use_interest_groups
- *   TRUE to load interest groups for the list.
+ *   TRUE to load interest groups for the list/audience.
  * @param bool $reset
- *   TRUE to reset list cache and load from MailChimp.
+ *   TRUE to reset list/audience cache and load from MailChimp.
  * @param bool $exclude_hidden_interest_groups
- *   TRUE to exclude hidden interest groups for the list.
+ *   TRUE to exclude hidden interest groups for the list/audience.
  *
  * @return object
  *   A MailChimp list object.
@@ -263,7 +263,7 @@ function mailchimp_get_list($list_id, $use_interest_groups = TRUE, $reset = FALS
 }
 
 /**
- * Gets MailChimp lists. Can be filtered by an array of list IDs.
+ * Gets MailChimp lists/audiences. Can be filtered by an array of list IDs.
  *
  * @param array $list_ids
  *   An array of list IDs to filter the results by.
@@ -524,7 +524,7 @@ function mailchimp_get_mergevars($list_ids, $reset = FALSE) {
       $mergevars[$list_id] = array(
         (object) array(
           'tag' => 'EMAIL',
-          'name' => 'Email Address',
+          'name' => t('Email Address'),
           'type' => 'email',
           'required' => TRUE,
           'default_value' => '',
@@ -1222,7 +1222,7 @@ function mailchimp_segment_add_subscriber($list_id, $segment_id, $email, $batch 
       'item' => $item,
     ));
     if (!$success) {
-      watchdog('mailchimp', 'A problem occurred adding a MailChimp segment subscribe to the queue. Email: @email List: @list Segment: @segment.', array(
+      watchdog('mailchimp', 'A problem occurred adding a MailChimp segment subscribe to the queue. Email: @email Audience: @list Segment: @segment.', array(
         '@email' => $email,
         '@list' => $list_id,
         '@segment' => $segment_id,
@@ -1275,7 +1275,7 @@ function mailchimp_segment_batch_add_subscribers($list_id, $segment_id, $batch) 
     }
   }
   catch (Exception $e) {
-    watchdog('mailchimp', 'An error occurred on batch segment add. List: @list_id Segment: @segment_id. "%message"', array(
+    watchdog('mailchimp', 'An error occurred on batch segment add. Audience: @list_id Segment: @segment_id. "%message"', array(
       '@list_id' => $list_id,
       '@segment_id' => $segment_id,
       '%message' => $e->getMessage(),
@@ -1604,7 +1604,7 @@ function mailchimp_interest_groups_form_elements($list, $defaults = array(), $em
     catch (\Exception $e) {
       watchdog(
         'mailchimp',
-        'An error occurred requesting interest groups for list @list. "%message"',
+        'An error occurred requesting interest groups for audience @list. "%message"',
         [
           '@list' => $list->id,
           '%message' => $e->getMessage(),
