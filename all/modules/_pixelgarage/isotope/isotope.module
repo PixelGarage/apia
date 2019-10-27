@@ -3,6 +3,27 @@
  * @file
  * Provides an API for integrating the jQuery Isotope plugin with Drupal.
  */
+/*
+function isotope_cron() {
+  $query = new EntityFieldQuery();
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'project')
+    ->propertyCondition('status', 1)
+    ->propertyOrderBy('created', 'DESC');
+  $result = $query->execute();
+
+  if (isset($result['node'])) {
+    $nodes = node_load_multiple(array_keys($result['node']));
+    $weight = 0;
+    foreach ($nodes as $node) {
+      $node->field_weight[LANGUAGE_NONE][0]['value'] = $weight;
+      node_save($node);
+      $weight += 10;
+    }
+  }
+
+}
+*/
 
 //
 //  Isotope library definition and checking functions
