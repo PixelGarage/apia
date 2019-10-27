@@ -376,6 +376,20 @@ function mailchimp_signup_subscribe_form($form, &$form_state, $signup, $type) {
     }
   }
 
+  // Include the GDPR consent checkbox if necessary
+  $gdpr_consent = $signup->settings['gdpr_consent'];
+  if ($gdpr_consent) {
+    $form['gdpr_consent'] = array(
+      '#type' => 'checkbox',
+      '#default_value' => FALSE,
+      '#title' => $signup->settings['gdpr_checkbox_label'],
+      '#prefix' => '<div class="form-checkboxes">',
+      '#suffix' => '</div>',
+      '#weight' => 10,
+      '#required' => isset($signup->settings['gdpr_consent_required']) ? $signup->settings['gdpr_consent_required'] : FALSE,
+    );
+  }
+
   $form['actions']['#type'] = 'actions';
   $form['actions']['submit'] = array(
     '#type' => 'submit',
@@ -454,7 +468,7 @@ function mailchimp_signup_subscribe_form_submit($form, &$form_state) {
         $interests[$interest_group] = TRUE;
       }
     }
-    $result = mailchimp_subscribe($list_id, $email, $mergevars, $interests, $signup->settings['doublein']);
+    $result = mailchimp_subscribe($list_id, $email, $mergevars, $interests, $signup->settings['doublein'], 'html', (bool) $form_state['values']['gdpr_consent']);
     // Let other modules act on the results in hook_form_alter.
     $form_state['mailchimp_results'][$list_id] = $result;
     if (empty($result) || (isset($result->success) && $result->success === FALSE)) {

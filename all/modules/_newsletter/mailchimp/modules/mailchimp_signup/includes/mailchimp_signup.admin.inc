@@ -199,6 +199,49 @@ function mailchimp_signup_form($form, &$form_state, MailchimpSignup $signup) {
     '#description' => t('If set, subscribers will be able to select applicable interest groups on the signup form.'),
   );
 
+  $form['gdpr_settings'] = array(
+    '#type' => 'fieldset',
+    '#title' => t('GDPR Settings'),
+    '#collapsible' => TRUE,
+    '#collapsed' => FALSE,
+  );
+
+  $form['gdpr_settings']['gdpr_consent'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('Add a GDPR consent checkbox'),
+    '#description' => t('Add a GDPR consent checkbox to the signup form that syncs with the Mailchimp marketing permission field.'),
+    '#default_value' => isset($signup->settings['gdpr_consent']) ? $signup->settings['gdpr_consent'] : FALSE,
+  );
+
+  $form['gdpr_settings']['gdpr_checkbox_label'] = array(
+    '#type' => 'textfield',
+    '#title' => t('Consent checkbox label'),
+    '#description' => t('The label to display on the GDPR consent checkbox, for example "I agree to the privacy policy".'),
+    '#default_value' => isset($signup->settings['gdpr_checkbox_label']) ? $signup->settings['gdpr_checkbox_label'] : NULL,
+    '#states' => array(
+      // Hide unless needed.
+      'visible' => array(
+        ':input[name="gdpr_consent"]' => array('checked' => TRUE),
+      ),
+      'required' => array(
+        ':input[name="gdpr_consent"]' => array('checked' => TRUE),
+      ),
+    ),
+  );
+
+  $form['gdpr_settings']['gdpr_consent_required'] = array(
+    '#type' => 'checkbox',
+    '#title' => t('GDPR consent required'),
+    '#description' => t('Make the GDPR consent checkbox a required field.'),
+    '#default_value' => isset($signup->settings['gdpr_consent_required']) ? $signup->settings['gdpr_consent_required'] : FALSE,
+    '#states' => array(
+      // Hide unless needed.
+      'visible' => array(
+        ':input[name="gdpr_consent"]' => array('checked' => TRUE),
+      ),
+    ),
+  );
+
   $form['save'] = array(
     '#type' => 'submit',
     '#value' => t('Save'),
@@ -258,6 +301,9 @@ function mailchimp_signup_form_submit($form, &$form_state) {
   $signup->settings['doublein'] = $form_state['values']['doublein'];
   $signup->settings['include_interest_groups'] = $form_state['values']['include_interest_groups'];
   $signup->settings['placeholder'] = $form_state['values']['placeholder'];
+  $signup->settings['gdpr_consent'] = $form_state['values']['gdpr_consent'];
+  $signup->settings['gdpr_checkbox_label'] = $form_state['values']['gdpr_checkbox_label'];
+  $signup->settings['gdpr_consent_required'] = $form_state['values']['gdpr_consent_required'];
   if ($signup->save()) {
     if (isset($form_state['values']['settings']['path'])) {
       if (!isset($prior_settings['path']) || $prior_settings['path'] != $signup->settings['path'] || !($signup->mode & MAILCHIMP_SIGNUP_PAGE)) {

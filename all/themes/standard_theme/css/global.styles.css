@@ -1457,6 +1457,11 @@ body.desktop .social-buttons .shariff ul li.whatsapp {
 /*
  *  Field flexslider
  */
+.flexslider {
+  margin: 0;
+  border: none;
+}
+
 .field-item > .flex-nav-container {
     position: relative;
     margin: 0;
